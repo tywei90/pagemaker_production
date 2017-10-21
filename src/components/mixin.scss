@@ -1,0 +1,279 @@
+// 这里放置所有可以mixin的组件，方便可以多次调用
+
+// unit子组件通用样式，注意要在content组件里边引入继承，不要每个unit子组件都引入
+@mixin unitCommon{
+    .unit-common{
+        margin-top: 10px;
+        .header{
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 4px 15px;
+            height: 34px;
+            line-height: 34px;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            &:hover{
+                cursor: pointer;
+                .icon-iconfontbi,
+                .icon-shanchu1,
+                .icon-fuzhi,
+                .icon-yidong{
+                    visibility: visible;
+                }
+                .icon-fuzhi,{
+                    cursor: copy;
+                }
+                .icon-yidong{
+                    cursor: move;
+                }
+            }
+            input[type='text']{
+                background: transparent;
+                width: 16%;
+                height: 34px;
+                box-sizing: border-box;
+                padding: 6px 12px;
+                font-size: 16px;
+                line-height: 1.42857143;
+                border: 0px solid transparent;
+                box-sizing: border-box;
+            }
+            i{
+                height: 34px;
+                line-height: 34px;
+                cursor: pointer;
+            }
+            .icon-shanchu1{
+                margin-right: 20px;
+            }
+            .icon-fuzhi,.icon-iconfontbi,.icon-yidong{
+                margin-right: 10px;
+            }
+            .arrow-up{
+                transform: rotate(180deg);
+                transition: transform 0.3s ;
+            }
+            .arrow-down{
+                transform: rotate(0);
+                transition: transform 0.3s;
+            }
+        }
+        .content {
+            overflow: scroll;
+            >ul{
+                padding: 20px;
+                >li{
+                    font-size: 14px;
+                    margin-top: 10px;
+                    height: 34px;
+                    line-height: 34px;
+                    position: relative;
+                    >label{
+                        width: 15%;
+                        text-align: right;
+                    }
+                    input[type='text']{
+                        width: 80%;
+                        height: 34px;
+                        box-sizing: border-box;
+                        padding: 6px 12px;
+                        font-size: 14px;
+                        line-height: 1.42857143;
+                        color: #555;
+                        background-color: #fff;
+                        background-image: none;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                        &:focus{
+                            border-color: #66afe9;
+                            outline: 0;
+                            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+                        }
+                    }
+                    input.input-color{
+                        width: 85px;
+                        margin-left: 52px;
+                        cursor: not-allowed;
+                    }
+                    .rc-color-picker-wrap {
+                        margin: 4px 0 0 8px;
+                    }
+                    textarea{
+                        border: 1px solid #ccc;
+                        &:focus{
+                            border-color: #66afe9;
+                            outline: 0;
+                            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+                        }
+                    }
+                    .upload{
+                        position: absolute;
+                        right: 10px;
+                        top: 2px;
+                        cursor: pointer;
+                        .ant-upload-list{
+                            display: none;
+                        }
+                    }
+                    >ul{
+                        width: 80%;
+                        li{
+                            margin-left: 15px;
+                            input[type='text']{
+                                width: 56px !important;
+                            }
+                            label{
+                                padding-left: 10px;
+                            }
+                            &:first-child{
+                                margin-left: 0px;
+                            }
+                        }
+                        .label-left{
+                            label{
+                                padding-left: 0;
+                                padding-right: 10px;
+                            }
+                        }
+                    }
+                    &:first-child{
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }
+        .show-detail{
+            // 在unit子组件里边定义具体大小，才会有动态效果
+            height: initial;
+            transition: height 0.3s;
+        }
+        .hide-detail{
+            height: 0;
+            transition: height 0.3s;
+        }
+    }
+}
+
+// 登录弹窗模块css
+@mixin loginDialog{
+    .m-dialog.login-dialog {
+        .dialog-wrap {
+            margin-top: -200px;
+            margin-left: -195px;
+            border-radius: 5px;
+            .content {
+                min-height: 80px;
+                width: 300px;
+                border-radius: 6px;
+                padding-bottom: 0px;
+            }
+            >.button{
+                display: none;
+            }
+        }
+        .login-form {
+            .fire-logo {
+                color: #e53333;
+                line-height: 40px;
+                margin-bottom: 30px;
+                i{
+                    font-size: 40px;
+                }
+            }
+            .username,
+            .password {
+                position: relative;
+                i:first-child {
+                    position: absolute;
+                    left: 10px;
+                    top: 8px;
+                    font-size: 22px;
+                    color: #c8c8c8;
+                    margin-right: 10px;
+                }
+                input {
+                    background: transparent;
+                    position: relative;
+                    margin-bottom: 0px;
+                    border: 1px solid #c5cddb;
+                    box-sizing: border-box;
+                    height: 42px;
+                    line-height: 42px;
+                    padding: 4px 42px;
+                    width: 100%;
+                    color: #333;
+                    font-size: 16px;
+                    outline: none;
+                    &:focus {
+                        border: 1px solid #4aafe9;
+                    }
+                }
+                .blankInput {
+                    border: 1px solid #fa6060;
+                }
+                i:last-child {
+                    position: absolute;
+                    right: 10px;
+                    top: 9px;
+                    font-size: 18px;
+                    color: #c8c8c8;
+                    margin-left: 10px;
+                    cursor: pointer;
+                }
+            }
+            .username {
+                margin-bottom: 20px;
+            }
+            .errorTip {
+                text-align: justify;
+                color: #ff2b2b;
+                font-size: 12px;
+                height: 30px;
+                line-height: 30px;
+                i {
+                    margin-right: 3px;
+                    font-size: 13px;
+                }
+            }
+            .loginBtn {
+                margin: 0 auto;
+                padding: 0 0 50px 0;
+                font-size: 18px;
+                width: 300px;
+                box-sizing: border-box;
+                .btn {
+                    height: 44px;
+                    line-height: 44px;
+                    width: 300px;
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+            .others {
+                position: absolute;
+                bottom: 25px;
+                left: 0;
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0 45px;
+                span,
+                em {
+                    height: 12px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    color: #999;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+

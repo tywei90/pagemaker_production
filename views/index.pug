@@ -1,0 +1,14 @@
+include ./common/docHead
+
++docHead({
+	title:'前端工具集',
+	keywords:'前端工具集',
+	description: '前端工具集',
+	cssFile: ['/public/stylesheets/style.css'],
+	jsFile: ['/public/javascripts/jquery-2.2.4.js']
+})
+
+block aaa
+	h1 欢迎访问#{data.title}
+	p 已经开发的网页如下：
+	a(href='/genpages') pagemaker页面制作工具

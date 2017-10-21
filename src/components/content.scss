@@ -1,0 +1,88 @@
+@import "./mixin";
+
+.m-content{
+	width: calc(72vw - 300px);
+	text-align: left;
+	margin-left: 20px;
+	border: 1px solid #d6e9c6;
+	border-radius: 5px;
+	font-size: 16px;
+	position: relative;
+	.ant-upload-list{
+		display: none;
+	}
+	>div{
+		background-color: #dff0d8;
+		padding: 10px 15px;
+	    border-bottom: 1px solid transparent;
+	    border-top-left-radius: 5px;
+	    border-top-right-radius: 5px;
+	    color: #3c763d;
+	    span{
+	    	color: #337ab7;
+	    	font-size: 14px;
+	    	cursor: pointer;
+	    }
+	}
+	>ul>li{
+		position: relative;
+		@include unitCommon;
+	}
+}
+.upload-dialog{
+	.ant-modal-body{
+		padding: 30px;
+		font-size: 13px;
+		.m-upload{
+			margin-bottom: 15px;
+			&>span{
+				color: #108ee9;
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+		.m-dirname{
+			position: relative;
+			input {
+				margin-left: 5px;
+                width: 150px;
+                height: 28px;
+                line-height: 28px;
+                padding: 0 5px;
+                font-size: 12px;
+                border-radius: 3px;
+                border: 1px solid #d9d9d9;
+            }
+            input:focus{
+                border: 1px solid #4aafe9;
+            }
+            .errTip{
+                position: absolute;
+                width: 100%;
+                text-align: left;
+                bottom: -25px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 12px;
+                color: #f05028;
+                i{
+                    font-size: 14px;
+                    margin-right: 5px;
+                }
+            }
+		}
+	}
+	.ant-upload-list{
+		display: none;
+	}
+}
+
+
+
+
+
+
+
+
+
+

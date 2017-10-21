@@ -1,0 +1,130 @@
+.m-preview {
+    border: 0;
+    width: 371px;
+    height: 775px;
+    position: fixed;
+    right: 5%;
+    top: 50%;
+    margin-top: -388px;
+    background: url(../img/iphone.png) center /100% no-repeat;
+}
+
+iframe {
+    width: 320px;
+    height: 549px;
+    position: absolute;
+    top: 109px;
+    left: 23px;
+    overflow: hidden;
+}
+
+#release {
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    top: 59px;
+    left: 65px;
+    font-size: 18px;
+    color: #ff5722;
+    cursor: pointer;
+    i{
+        margin-right: 5px;
+    }
+}
+
+.see-released {
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    top: 59px;
+    right: 57px;
+    font-size: 18px;
+    color: #79b33a;
+    cursor: pointer;
+    i{
+        margin-right: 5px;
+    }
+}
+
+.clearDirectory {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    margin-left: -29px;
+    font-size: 18px;
+    color: transparent;
+    cursor: pointer;
+}
+
+
+.publish-dialog {
+    .ant-modal-body {
+        width: 450px;
+        padding: 35px 0 10px 50px;
+        &>div {
+            height: 60px;
+            position: relative;
+            label {
+                font-size: 14px;
+                height: 30px;
+                line-height: 30px;
+                margin-right: 15px;
+            }
+            input {
+                width: 150px;
+                height: 30px;
+                line-height: 30px;
+                padding: 0 5px;
+                font-size: 13px;
+                border-radius: 2px;
+                border: 1px solid #d9d9d9;
+            }
+            input:focus{
+                border: 1px solid #4aafe9;
+            }
+            p{
+                position: absolute;
+                width: 100%;
+                text-align: left;
+                bottom: 15px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 12px;
+                color: #f05028;
+                i{
+                    font-size: 14px;
+                    margin-right: 5px;
+                }
+            }
+            .ok-p{
+                color: #666;
+                i{
+                    color: #35bb35;
+                }
+            }
+            .errTip2, .errTip3{
+                bottom: 0;
+            }
+        }
+        .clear-info{
+            margin-bottom: 20px;
+        }
+        .dirname{
+            height: 70px;
+        }
+        .code{
+            height: 50px;
+        }
+    }
+}
+
+
+
+

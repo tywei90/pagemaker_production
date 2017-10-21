@@ -1,0 +1,14 @@
+#app {
+	.unit-button{
+		.show-detail{
+			height: 350px;
+		}
+		.hide-detail{
+			height: 0;
+		    transition: height 0.3s;
+		}
+	}
+	.low-height .show-detail{
+		height: 260px;
+	}
+}

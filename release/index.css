@@ -1,0 +1,326 @@
+/*媒体查询定义rem基数*/
+
+@media screen and (min-width: 240px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 9px;
+    }
+}
+
+@media screen and (min-width: 320px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 380px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width: 420px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+}
+
+
+
+/* 低版本浏览器出现滚动条，导致宽度小于480的处理*/
+
+@media screen and (min-width: 450px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 17px;
+    }
+}
+
+
+
+/* 1.5倍像素大小页面兼容代码 */
+
+@media screen and (min-width: 480px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 18px;
+    }
+}
+
+
+
+/* 针对小米的540分辨率做了优化 */
+
+@media screen and (min-width: 540px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 20.25px;
+    }
+}
+
+
+
+/* 针对魅族的600分辨率做了优化 */
+
+@media screen and (min-width: 600px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 22px;
+    }
+}
+
+
+
+/* 两倍像素大小页面兼容代码 */
+
+@media screen and (min-width: 640px) {
+    html,
+    body,
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 24px;
+    }
+}
+
+#framePage html,
+#framePage body,
+#framePage div,
+#framePage h5,
+#framePage h6,
+#framePage p,
+#framePage ul,
+#framePage li {
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+section {
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.f-cb {
+    display: block;
+    zoom: 1
+}
+
+.f-cb:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+.f-fl {
+    float: left
+}
+
+.f-fr {
+    float: right
+}
+
+.f-hide {
+    display: none
+}
+
+.f-hide2 {
+    visibility: hidden
+}
+
+.f-hide3 {
+    position: absolute;
+    left: -99999px;
+    top: -99999px
+}
+
+#framePage .title a {
+    display: block;
+    text-decoration: none;
+}
+
+#framePage .image img {
+    width: 100%;
+    display: block;
+}
+
+#framePage .image p {
+    position: absolute;
+    bottom: 0;
+    height: 2rem;
+    line-height: 2rem;
+    width: 100%;
+    text-align: center;
+    background: #666;
+    color: #fff;
+    opacity: 0.6;
+}
+
+#framePage .button a {
+    display: inline-block;
+    width: 100%;
+    height: 4rem;
+    line-height: 4rem;
+    text-align: center;
+    font-size: 1.5rem;
+    border: 0;
+    border-radius: 4px;
+    padding: 0;
+}
+
+.button a {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+#framePage .article-content b {
+    color: #d91d37;
+}
+
+#framePage .article-content i {
+    color: #ffcc00;
+}
+
+#framePage .article-content a {
+    text-decoration: underline;
+}
+
+#framePage .bigPD .article-content p:not(:first-child) {
+    margin-top: 10px;
+}
+
+#framePage .noUL .article-content a {
+    text-decoration: none;
+}
+
+/*音频样式*/
+.audio {
+    position: fixed;
+    z-index: 10;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.audio.topRight{
+    top: 1rem;
+    right: 1rem;
+}
+.audio.topLeft{
+    top: 1rem;
+    left: 1rem;
+}
+.audio.bottomRight{
+    bottom: 1rem;
+    right: 1rem;
+}
+.audio.bottomLeft{
+    bottom: 1rem;
+    left: 1rem;
+}
+.mscBtn.mscRoll{
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    display: block;
+    transform: rotate(360deg);
+    animation: music 8s infinite;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    -webkit-transform-origin: center center;
+    transform-origin: center center;
+}
+
+.mscBtn i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.mscBtn i.music-play {
+    background: url(../src/img/music1.png) no-repeat;
+    background-size: 100%;
+    z-index: 1;
+    opacity: 1;
+}
+
+.mscBtn i.music-pause {
+    background: url(../src/img/music2.png) no-repeat;
+    background-size: 100%;
+    z-index: 2;
+    opacity: 0;
+}
+
+@keyframes music {
+    from {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

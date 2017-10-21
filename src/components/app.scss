@@ -1,0 +1,19 @@
+#app {
+    width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	.m-body{
+		min-height: calc(100vh - 150px);
+		width: 90%;
+		max-width: 1600px;
+		min-width: 990px;
+		padding: 10px 0;
+		margin: 0 auto;
+	}
+}
+.m-body{
+	// 解决antd污染全局样式，默认所有都是border-box
+	*{
+		box-sizing: content-box;
+	}
+}

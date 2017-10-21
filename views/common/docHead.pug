@@ -1,0 +1,31 @@
+include ./mixins/base
+
+mixin docHead(config)
+	doctype html
+	html(lang='zh-CN')
+		head
+			title #{config.title}
+			if config.favicon
+				link(rel='shortcut icon' href=config.favicon)
+			meta(charset='utf-8')
+			meta(http-equiv='X-UA-Compatible' content='IE=edge,chrome=1')
+			meta(name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui')
+			meta(name='renderer' content='webkit')
+			if config.keywords
+				meta(name='keywords' content=config.keywords)
+			if config.description
+				meta(name='description' content=config.description)
+			if config.cssFile && config.cssFile.length > 0
+				+cssFile(config.cssFile)
+			if config.jsFile && config.jsFile.length > 0
+				+jsFile(config.jsFile)
+		body
+			noscript
+				#noScript
+					div
+						h2 '请开启浏览器的Javascript功能'
+						p 亲，没它我们玩不转啊！求您了，开启Javascript吧！
+							br/
+							|不知道怎么开启Javascript？那就请
+							a(href='//www.baidu.com/s?wd=%E5%A6%82%E4%BD%95%E6%89%93%E5%BC%80Javascript%E5%8A%9F%E8%83%BD' rel='nofollow' target='_blank') 猛击这里
+							|!

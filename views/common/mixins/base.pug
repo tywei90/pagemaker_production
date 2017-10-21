@@ -1,0 +1,7 @@
+mixin jsFile(files)
+	each file in files
+		script(type='text/javascript' src=file)
+
+mixin cssFile(files)
+	each file in files
+		link(rel='stylesheet' href=file)

@@ -1,0 +1,104 @@
+@import "./normalize";
+@import url(./iconfont.css);
+html,
+body,
+div,
+h5,
+h6,
+p,
+ul,
+li {
+    margin: 0px;
+    padding: 0px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+a {
+    text-decoration: none;
+}
+
+input{
+    outline: 0;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.f-cb {
+    display: block;
+    zoom: 1
+}
+
+.f-cb:after {
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+.f-fl {
+    float: left
+}
+
+.f-fr {
+    float: right
+}
+
+.f-hide {
+    display: none
+}
+
+.f-hide2 {
+    visibility: hidden
+}
+
+.f-hide3 {
+    position: absolute;
+    left: -99999px;
+    top: -99999px
+}
+
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #bdbdbd;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #bdbdbd;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #bdbdbd;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #bdbdbd;
+}
+
+:-o-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #bdbdbd;
+}

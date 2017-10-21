@@ -1,0 +1,31 @@
+.list {
+	width: 600px;
+    margin: 0 auto;
+    border-bottom: 1px solid #999;
+    height: 200px;
+    &:after {
+    	content: '';
+    	height: 0;
+    	visibility: hidden;
+    	clear: both;
+    }
+}
+.preview-img {
+	width: 100px;	
+	float: left;
+	margin-top: 15px;
+}
+.name {
+	width: 40%;
+	line-height: 200px;
+	float: left;
+	font-size: 20px;
+}
+.link {
+	width: 10%;
+	text-decoration: none;
+	float: right;
+	line-height: 200px;
+	color: #333;
+	font-size: 20px;
+}

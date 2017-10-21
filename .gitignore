@@ -1,0 +1,14 @@
+# Mac OS X
+.DS_Store
+
+# JetBrains IDE
+.idea
+
+# npm模块安装目录
+node_modules
+
+# npm报错日志
+npm-debug.log
+
+# 发布输出目录
+tmp

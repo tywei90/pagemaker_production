@@ -1,0 +1,5 @@
+include ./mixins/base
+
+mixin docFoot(config)
+	if config.jsFile && config.jsFile.length > 0
+		+jsFile(config.jsFile)

@@ -1,0 +1,18 @@
+include ./common/docHead
+
++docHead({
+	title:'已经发布的页面',
+	keywords:'已经发布的页面',
+	description: '已经发布的页面',
+	cssFile: ['/public/stylesheets/style.css'],
+	jsFile: ['/public/javascripts/jquery-2.2.4.js']
+})
+
+block aaa
+	- var existDirname = data.existDirname;
+	h1 #{data.title}
+	ol
+		each val, index in existDirname
+			li
+				a(href='/release/' + val + '.html')=  val
+	
