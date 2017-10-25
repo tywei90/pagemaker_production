@@ -352,7 +352,7 @@ class Preview extends React.Component {
 				'</head>'+ 
 				'<body style="background-color: '+ data.bgColor +'">' + 
 					bodyContext + 
-					'<script  type="text/javascript" src="/public/javascripts/jquery-2.2.4.js"></script>' +
+					'<script  type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>' +
 					'<script  type="text/javascript" src="/release/index.js"></script>' +
 					'<script  type="text/javascript">' + me.insertJS + '</script>'+
 				'</body>' + 
@@ -422,7 +422,7 @@ class Preview extends React.Component {
 								'<style id="insertCSS" type="text/css"></style>' + 
 							'</head>'+ 
 							'<body style="background-color: '+ data.bgColor + '"><div id="framePage"></div>'+
-							'<script  id="jquery" type="text/javascript" src="/public/javascripts/jquery-2.2.4.js"></script>' +
+							'<script  id="jquery" type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>' +
 							'</body></html>';
 		return (
 			<section className="m-preview">
