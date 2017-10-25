@@ -343,7 +343,7 @@ class Preview extends React.Component {
 			'<html>' + 
 				'<head>'+ 
 					'<title>' + data.title +'</title>'+
-					'<link rel="shortcut icon" href="/build/favicon.ico">' + 
+					'<link rel="shortcut icon" href="/src/img/favicon.ico">' + 
 					'<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">'+
 					'<meta name="keywords" content=' + data.keywords + '>'+
 					'<meta name="description" content=' + data.desc + '>'+ 
@@ -414,7 +414,7 @@ class Preview extends React.Component {
 		let initialContent='<!DOCTYPE html><html>' + 
 							'<head>'+ 
 								'<title>' + data.title +'</title>'+
-								'<link rel="shortcut icon" href="/build/favicon.ico">' + 
+								'<link rel="shortcut icon" href="/src/img/favicon.ico">' + 
 								'<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">'+
 								'<meta name="keywords" content=' + data.keywords + '>'+
 								'<meta name="description" content=' + data.desc + '>'+ 

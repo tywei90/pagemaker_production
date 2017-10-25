@@ -4,9 +4,25 @@ include ./common/docHead
 	title:'pagemaker',
 	keywords:'制作工具,pagemaker,h5页面制作',
 	description: '触屏版信息页::制作工具',
-	favicon: '/build/favicon.ico',
-	cssFile: ['https://pagemaker.wty90.com/build/main.css']
+	favicon: '/src/img/favicon.ico',
+	cssFile: [
+		'https://pagemaker.wty90.com/build/main.css', 
+		'https://cdn.bootcss.com/antd/2.5.2/antd.min.css', 
+		'https://cdn.bootcss.com/codemirror/5.28.0/codemirror.min.css',
+		'https://cdn.bootcss.com/codemirror/5.28.0/theme/monokai.min.css'
+	]
 })
 body
 	#app
-	+jsFile(['https://pagemaker.wty90.com/build/main.js'])
+	+jsFile([
+		'https://cdn.bootcss.com/codemirror/5.28.0/codemirror.js',
+		'https://cdn.bootcss.com/codemirror/5.28.0/mode/javascript/javascript.min.js',
+		'https://cdn.bootcss.com/codemirror/5.28.0/mode/css/css.min.js',
+		'https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js',
+		'https://cdn.bootcss.com/react/15.3.1/react.min.js',
+		'https://cdn.bootcss.com/react-dom/15.3.1/react-dom.min.js',
+		'https://cdn.bootcss.com/react-router/3.2.0/ReactRouter.min.js',
+		'https://cdn.bootcss.com/immutable/3.8.1/immutable.min.js',
+		'https://cdn.bootcss.com/antd/2.5.2/antd.min.js', 
+		'https://pagemaker.wty90.com/build/main.js'
+	])

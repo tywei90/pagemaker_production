@@ -61,7 +61,17 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('main.css'),
         new progressBarPlugin()
-    ]
+    ],
+
+    externals: {
+        "jquery": "jQuery",
+        'antd': 'antd',
+        "react": "React",
+        "react-dom": "ReactDOM",
+        'CodeMirror': 'CodeMirror',
+        'immutable': 'Immutable',
+        'react-router': 'ReactRouter'
+    }
 }
 
 if (process.env.NODE_ENV === 'production') {

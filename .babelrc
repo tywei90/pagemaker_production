@@ -7,7 +7,6 @@
     ],
     "plugins": [
         "transform-decorators-legacy",
-        "transform-class-properties",
-        ["import", [{ "libraryName": "antd", "style": "css" }]]
+        "transform-class-properties"
     ]
 }

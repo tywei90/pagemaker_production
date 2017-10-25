@@ -1,15 +1,15 @@
 import './index.scss'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/monokai.css'
+// import 'codemirror/lib/codemirror.css'
+// import 'codemirror/theme/monokai.css'
 
 import React, {PropTypes} from 'react'
 import autoBind from 'autobind-decorator'
 import pureRender from 'pure-render-decorator'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import CodeMirror from 'codemirror/lib/codemirror.js'
-import js from 'codemirror/mode/javascript/javascript.js'
-import css from 'codemirror/mode/css/css.js'
+import CodeMirror from 'CodeMirror'
+// import js from 'codemirror/mode/javascript/javascript.js'
+// import css from 'codemirror/mode/css/css.js'
 
 import unitAction from '../../../action/unit';
 import UnitPanel from '../panel/index';
