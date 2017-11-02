@@ -35,8 +35,8 @@ app.use('/src', express.static(path.join(__dirname, '../src')));
 
 
 
-app.use('/', index);
-app.use('/genpages', genpages);
+app.use('/', genpages);
+// app.use('/genpages', genpages);
 app.use('/users', users);
 app.use('/email', email);
 app.use('/h5', h5);

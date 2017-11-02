@@ -114,7 +114,7 @@ router.get('/username', function(req, res, next) {
     // 查询数据库代码...
     res.json({
         data:{
-            username: '魏天尧'
+            username: 'Teal'
         },
         retcode: 200,
         retdesc: '请求成功'
