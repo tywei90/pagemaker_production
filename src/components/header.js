@@ -21,7 +21,7 @@ class Header extends React.Component {
     }
     // ajax请求正确方式
     componentDidMount(){
-        fetch('/genpages/username', {
+        fetch('/username', {
             method: 'get',
             headers: {
                 'Content-Type': 'application/json'

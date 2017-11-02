@@ -107,7 +107,7 @@ class Content extends React.Component {
         this.setState({
             confirmLoading: true,
         });
-        fetch('/genpages/getConfig', {
+        fetch('/getConfig', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -149,7 +149,7 @@ class Content extends React.Component {
     }
     download(){
         var config = JSON.parse(localStorage.getItem('config') || '');
-        fetch('/genpages/download', {
+        fetch('/download', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -168,7 +168,7 @@ class Content extends React.Component {
         })
         // 预删除后台下载生成的目录失败
         // .then((data) => {
-        //     fetch('/genpages/delete', {
+        //     fetch('/delete', {
         //         method: 'POST',
         //         headers: {
         //             'Content-Type': 'application/json'
@@ -183,7 +183,7 @@ class Content extends React.Component {
         const { errTip, visible, confirmLoading } = this.state;
         const uploadProps = {
             name: 'file',
-            action: '/genpages/upload',
+            action: '/upload',
             accept: '.json',
             headers: {
                 authorization: 'authorization-text',

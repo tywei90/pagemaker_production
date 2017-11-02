@@ -116,7 +116,7 @@ class Preview extends React.Component {
 		    });
 		    return
 		}
-		fetch('/genpages/checkDirname', {
+		fetch('/checkDirname', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -156,7 +156,7 @@ class Preview extends React.Component {
 		this.setState({
 	    	confirmLoading: true,
 	    });
-		fetch('/genpages/release', {
+		fetch('/release', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -223,7 +223,7 @@ class Preview extends React.Component {
 		this.setState({
 	    	confirmLoading2: true,
 	    });
-		fetch('/genpages/delDirectory', {
+		fetch('/delDirectory', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -274,7 +274,7 @@ class Preview extends React.Component {
 		this.setState({
 	    	confirmLoading3: true,
 	    });
-		fetch('/genpages/clear', {
+		fetch('/clear', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
