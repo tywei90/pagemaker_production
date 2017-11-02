@@ -12,7 +12,7 @@ import App from './components/app';
 ReactDom.render(
 	<Provider store={Store}>
 	    <Router history={browserHistory}>
-	        <Route path="/genpages" component={App}>
+	        <Route path="/" component={App}>
 	            
 	        </Route>
 	    </Router>
