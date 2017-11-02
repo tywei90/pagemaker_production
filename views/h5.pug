@@ -4,12 +4,13 @@ include ./common/docHead
 	title:'h5动效页',
 	keywords:'h5|动效页',
 	description: 'h5动效页',
+	favicon: '/src/img/favicon.ico',
 	cssFile: ['/public/stylesheets/style.css'],
-	jsFile: ['/public/javascripts/jquery-2.2.4.js']
+	jsFile: ['https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js']
 })
 
 block aaa
 	h1 #{data.title}
 	p #{data.title}页面暂未开发，敬请期待
 	p 已经开发的网页如下：
-	a(href='/genpages') pagemaker页面制作工具
+	a(href='/') pagemaker页面制作工具
