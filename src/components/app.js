@@ -77,9 +77,16 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        let wHeight = window.innerHeight;
-        let ratio = wHeight/820;
-        $('.m-preview').css('transform', `scale(${ratio})`);
+        // 预览部分自适应
+        var setPreviewSize = function(){
+            let wHeight = window.innerHeight;
+            let ratio = (wHeight - 100)/820;
+            $('.m-preview').css('transform', `scale(${ratio})`);
+        }
+        setPreviewSize();
+        $(window).on('resize', function(){
+            setPreviewSize();
+        })
     }
     render() {
         
