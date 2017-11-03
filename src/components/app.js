@@ -79,7 +79,7 @@ class App extends React.Component {
     componentDidMount() {
         let wHeight = window.innerHeight;
         let ratio = wHeight/820;
-        $('.m-preview').css('transform', scale(ratio));
+        $('.m-preview').css('transform', `scale(${ratio})`);
     }
     render() {
         
