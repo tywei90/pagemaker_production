@@ -7,9 +7,9 @@
     }
 
     textarea {
-        width: 500px;
+        width: calc(72vw - 530px);
         max-width: 763px;
-        height: 70px;
+        height: 80px;
         max-height: 200px;
         box-sizing: border-box;
         padding: 8px;

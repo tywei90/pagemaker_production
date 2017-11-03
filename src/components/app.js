@@ -14,6 +14,8 @@ import Preview from './preview.js'
 import unitAction from '../action/unit';
 import { Modal } from 'antd';
 
+import $ from 'jquery'
+
 class App extends React.Component {
     showConfirm(address) {
         Modal.confirm({
@@ -75,7 +77,9 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        
+        let wHeight = window.innerHeight;
+        let ratio = wHeight/820;
+        $('.m-preview').css('transform', scale(ratio));
     }
     render() {
         
