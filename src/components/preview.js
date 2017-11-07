@@ -420,7 +420,6 @@ class Preview extends React.Component {
 								'<meta name="description" content=' + data.desc + '>'+ 
 								'<link type="text/css" rel="stylesheet" href="/release/index.css" />' + 
 								'<style id="insertCSS" type="text/css"></style>' +
-								// 百度统计 
 								'<script>'+
 									'var _hmt = _hmt || [];'+
 									'(function() {'+
@@ -430,7 +429,6 @@ class Preview extends React.Component {
 										's.parentNode.insertBefore(hm, s);'+
 									'})();'+
 								'</script>'+
-								// 谷歌统计
 								'<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109240313-1"></script>'+
 								'<script>'+
 									'window.dataLayer = window.dataLayer || [];'+
