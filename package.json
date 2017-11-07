@@ -5,7 +5,7 @@
   "description": "立马理财页面制作工具项目",
   "scripts": {
     "dev": "cross-env NODE_ENV=development && webpack-dev-server --devtool --progress",
-    "server": "pm2 start ./server/www",
+    "server": "pm2 start ./server/pagemaker",
     "build": "cross-env NODE_ENV=production && webpack -p"
   },
   "repository": {
