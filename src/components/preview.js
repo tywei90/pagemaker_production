@@ -349,6 +349,22 @@ class Preview extends React.Component {
 					'<meta name="description" content=' + data.desc + '>'+ 
 					'<link type="text/css" rel="stylesheet" href="/release/index.css" />' + 
 					'<style id="insertCSS" type="text/css">' + me.insertCSS + '</style>' + 
+					'<script>'+
+						'var _hmt = _hmt || [];'+
+						'(function() {'+
+							'var hm = document.createElement("script");'+
+							'hm.src = "https://hm.baidu.com/hm.js?dd6484741f3715e3bb10b2c134341631";'+
+							'var s = document.getElementsByTagName("script")[0]; '+
+							's.parentNode.insertBefore(hm, s);'+
+						'})();'+
+					'</script>'+
+					'<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109240313-1"></script>'+
+					'<script>'+
+						'window.dataLayer = window.dataLayer || [];'+
+						'function gtag(){dataLayer.push(arguments);}'+
+						"gtag('js', new Date());"+
+						"gtag('config', 'UA-109240313-1');"+
+					'</script>'+
 				'</head>'+ 
 				'<body style="background-color: '+ data.bgColor +'">' + 
 					bodyContext + 
@@ -420,22 +436,6 @@ class Preview extends React.Component {
 								'<meta name="description" content=' + data.desc + '>'+ 
 								'<link type="text/css" rel="stylesheet" href="/release/index.css" />' + 
 								'<style id="insertCSS" type="text/css"></style>' +
-								'<script>'+
-									'var _hmt = _hmt || [];'+
-									'(function() {'+
-										'var hm = document.createElement("script");'+
-										'hm.src = "https://hm.baidu.com/hm.js?dd6484741f3715e3bb10b2c134341631";'+
-										'var s = document.getElementsByTagName("script")[0]; '+
-										's.parentNode.insertBefore(hm, s);'+
-									'})();'+
-								'</script>'+
-								'<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109240313-1"></script>'+
-								'<script>'+
-									'window.dataLayer = window.dataLayer || [];'+
-									'function gtag(){dataLayer.push(arguments);}'+
-									"gtag('js', new Date());"+
-									"gtag('config', 'UA-109240313-1');"+
-								'</script>'+
 							'</head>'+ 
 							'<body style="background-color: '+ data.bgColor + '"><div id="framePage"></div>'+
 							'<script  id="jquery" type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>' +
