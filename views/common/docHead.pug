@@ -19,6 +19,20 @@ mixin docHead(config)
 				+cssFile(config.cssFile)
 			if config.jsFile && config.jsFile.length > 0
 				+jsFile(config.jsFile)
+			script(async src='https://www.googletagmanager.com/gtag/js?id=UA-109240313-1')
+		    script(type='text/javascript').
+		        window.dataLayer = window.dataLayer || [];
+		        function gtag(){dataLayer.push(arguments);}
+		        gtag('js', new Date());
+		        gtag('config', 'UA-109240313-1');
+		    script(type='text/javascript').
+		        var _hmt = _hmt || [];
+		        (function() {
+		          var hm = document.createElement("script");
+		          hm.src = "https://hm.baidu.com/hm.js?dd6484741f3715e3bb10b2c134341631";
+		          var s = document.getElementsByTagName("script")[0]; 
+		          s.parentNode.insertBefore(hm, s);
+		        })();
 		body
 			noscript
 				#noScript
