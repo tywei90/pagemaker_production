@@ -13,5 +13,3 @@ npm-debug.log
 # 发布输出目录
 tmp
 
-# 生成目录
-build
