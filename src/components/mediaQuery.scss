@@ -45,20 +45,73 @@
                         .icon-zhankaianniu {
                             font-size: 14px;
                         }
+                        .icon-shanchu1,
+                        .icon-fuzhi,
+                        .icon-yidong{
+                            visibility: visible;
+                            margin-right: 15px;
+                        }
+                        .icon-iconfontbi{
+                            display: none;
+                        }
+                        .icon-shanchu1{
+                            margin-right: 20px;
+                        }
+                        >input{
+                            width: 65px;
+                            height: 28px;
+                            font-size: 14px;
+                            padding: 0;
+                        }
                     }
                     .content {
+                        width: 100%;
+                        >ul{
+                            padding: 20px 20px 20px 10px;
+                        }
                         >ul>li {
                             >label {
-                                width: 25%;
+                                width: 20%;
                             }
                             >input {
-                                width: 73%;
+                                width: 75%;
                                 height: 30px;
                                 margin: 2px 0;
                                 padding: 4px 8px;
+                                font-size: 12px;
+                            }
+                            >ul{
+                                width: 75%;
+                                input{
+                                    font-size: 12px;
+                                    vertical-align: middle;
+                                }
+                                label{
+                                    padding-left: 3px;
+                                }
+                                .label-left{
+                                    margin-left: 10px;
+                                    label{
+                                        padding-right: 4px;
+                                        padding-left: 0px;
+                                    }
+                                    input[type=text] {
+                                        width: 35px!important;
+                                        height: 30px;
+                                        margin: 2px 0;
+                                        padding: 4px 5px;
+                                        font-size: 12px;
+                                    }
+                                }
+                                .label-left:first-child{
+                                    margin-left: 0px;
+                                }
                             }
                         }
                     }
+                }
+                .unit-meta .header{
+                    padding-left: 15px;
                 }
             }
         }
