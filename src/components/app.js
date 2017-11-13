@@ -91,7 +91,7 @@ class App extends React.Component {
     render() {
         
         return (
-            <div className="window">
+            <div id="main">
                 <Header />
                 <div className="m-body f-cb">
                     <UnitsList />

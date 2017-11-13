@@ -39,7 +39,7 @@ class Header extends React.Component {
             <header className="f-cb">
                 <a href="/" className="goHome icon iconfont icon-fire f-fl"></a>
                 <div className="links f-fl">
-                    <a className="active" href="/genpages">pagemaker</a>
+                    <a className="active" href="/">pagemaker</a>
                     <a href="/email">直邮工具</a>
                     <a href="/h5">动效页</a>
                 </div>
