@@ -86,7 +86,7 @@ class App extends React.Component {
         var setPreviewSize = function(){
             let wHeight = window.innerHeight;
             let wWidth = window.innerWidth;
-            let ratio = wWidth < 800? wHeight/800 : (wHeight - 100)/820;
+            let ratio = wWidth < 800? wHeight/800 : (wHeight - 100)/800;
             $('.m-preview').css('transform', `scale(${ratio})`);
         }
         setPreviewSize();

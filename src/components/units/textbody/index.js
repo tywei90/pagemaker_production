@@ -177,8 +177,8 @@ class UnitTextBody extends React.Component {
                             </li>
                         </ul>
                     </li>
-                    <li className="f-cb otherSettings">
-                        <label className="f-fl">其他设置</label>
+                    <li className="f-cb">
+                        <label className="f-fl">其他设置1</label>
                         <ul className="f-fr">
                             <li className="f-fl">
                                 <input
@@ -216,6 +216,11 @@ class UnitTextBody extends React.Component {
                                 />
                               <label htmlFor={`bigLH${id}`}>大行距</label>
                             </li>
+                        </ul>
+                    </li>
+                    <li className="f-cb">
+                        <label className="f-fl">其他设置2</label>
+                        <ul className="f-fr">
                             <li className="f-fl">
                                 <input
                                     type="checkbox"

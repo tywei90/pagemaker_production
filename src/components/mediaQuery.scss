@@ -148,15 +148,15 @@
                                 padding: 4px 20px 4px 5px;
                                 font-size: 12px;
                             }
-                            >input.input-color {
-                                float: right;
+                            >.input-color {
+                                width: 88px;
+                                margin-left: 5%;
                             }
                             .upload {
                                 right: 5px;
                             }
                             .rc-color-picker-wrap {
-                                position: absolute;
-                                right: 2px;
+                                float: left
                             }
                             >ul {
                                 width: 75%;
@@ -205,17 +205,6 @@
                                 .example-btn {
                                     width: 50px;
                                     right: 0;
-                                }
-                            }
-                            .otherSettings {
-                                height: initial;
-                                >ul {
-                                    li:nth-child(3) {
-                                        margin-right: 15px;
-                                    }
-                                    li:nth-child(4) {
-                                        margin-left: 0px;
-                                    }
                                 }
                             }
                         }
@@ -283,6 +272,13 @@
                     line-height: 17px;
                 }
             }
+        }
+    }
+    .ant-modal-content>.ant-modal-body .ant-confirm-content {
+        margin-left: 5px;
+        margin-top: 20px;
+        p {
+            word-wrap: break-word;
         }
     }
 }
