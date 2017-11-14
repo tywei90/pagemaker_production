@@ -8,9 +8,16 @@
                 line-height: 40px;
                 height: 40px;
             }
+            .aside-unitList {
+                display: inline-block;
+                position: absolute;
+                left: 5px;
+                top: 0px;
+                padding: 0 10px;
+            }
             .goHome {
                 font-size: 20px;
-                padding-left: 0px;
+                padding: 0 10px;
                 margin-left: 50px;
             }
             .links {
@@ -18,6 +25,9 @@
             }
             .user {
                 padding-right: 20px;
+                a:hover {
+                    color: inherit;
+                }
             }
         }
         .m-body {
@@ -27,14 +37,75 @@
             padding: 15px 10px;
             min-height: calc(100vh - 80px);
             .m-units-list {
-                display: none;
+                position: fixed;
+                width: 200px;
+                top: 0;
+                height: 100%;
+                box-sizing: border-box;
+                overflow: scroll;
+                left: -200px;
+                -webkit-transition: left .3s;
+                transition: left .3s;
+                z-index: 20;
+                min-height: 0;
+                border: none;
+                border-radius: 0px;
+                text-align: left;
+                color: white;
+                ul {
+                    padding: 100px 0;
+                    background: url(../img/bg.jpg) center center no-repeat;
+                    background-size: 100% 100%;
+                    box-sizing: border-box;
+                }
+                ul:before {
+                    content: '组件列表';
+                    display: block;
+                    font-size: 16px;
+                    padding-left: 30px;
+                    letter-spacing: 5px;
+                    padding-bottom: 20px;
+                }
+                ul li {
+                    padding: 12px 20px 12px 35px;
+                    &:hover {
+                        background-color: inherit;
+                    }
+                    &:active {
+                        background-color: #d15a41;
+                    }
+                    i {
+                        color: #fff;
+                        margin-right: 15px;
+                    }
+                }
             }
             .m-content {
                 width: 100%;
                 margin: 0;
+                #J_preview {
+                    display: inline-block;
+                }
+            }
+            @keyframes zoomInDown {
+                from {
+                    opacity: 0;
+                    transform: scale3d(.1, .1, .1) translate3d(0, -1000px, 0);
+                    animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+                }
+
+                60% {
+                    opacity: 1;
+                    transform: scale3d(.6, .6, .6) translate3d(0, 60px, 0);
+                    animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+                }
             }
             .m-preview {
                 display: none;
+                right: 50%;
+                margin-right: -186px;
+                z-index: 20;
+                animation: zoomInDown 0.5s;
             }
             #unitMain {
                 .unit-common {
@@ -47,17 +118,17 @@
                         }
                         .icon-shanchu1,
                         .icon-fuzhi,
-                        .icon-yidong{
+                        .icon-yidong {
                             visibility: visible;
                             margin-right: 15px;
                         }
-                        .icon-iconfontbi{
+                        .icon-iconfontbi {
                             display: none;
                         }
-                        .icon-shanchu1{
+                        .icon-shanchu1 {
                             margin-right: 20px;
                         }
-                        >input{
+                        >input {
                             width: 65px;
                             height: 28px;
                             font-size: 14px;
@@ -66,9 +137,6 @@
                     }
                     .content {
                         width: 100%;
-                        >ul{
-                            padding: 20px 20px 20px 10px;
-                        }
                         >ul>li {
                             >label {
                                 width: 20%;
@@ -77,21 +145,31 @@
                                 width: 75%;
                                 height: 30px;
                                 margin: 2px 0;
-                                padding: 4px 8px;
+                                padding: 4px 20px 4px 5px;
                                 font-size: 12px;
                             }
-                            >ul{
+                            >input.input-color {
+                                float: right;
+                            }
+                            .upload {
+                                right: 5px;
+                            }
+                            .rc-color-picker-wrap {
+                                position: absolute;
+                                right: 2px;
+                            }
+                            >ul {
                                 width: 75%;
-                                input{
+                                input {
                                     font-size: 12px;
                                     vertical-align: middle;
                                 }
-                                label{
+                                label {
                                     padding-left: 3px;
                                 }
-                                .label-left{
+                                .label-left {
                                     margin-left: 10px;
-                                    label{
+                                    label {
                                         padding-right: 4px;
                                         padding-left: 0px;
                                     }
@@ -103,15 +181,72 @@
                                         font-size: 12px;
                                     }
                                 }
-                                .label-left:first-child{
+                                .label-left:first-child {
                                     margin-left: 0px;
+                                }
+                            }
+                            .audio-position li {
+                                margin-left: 10px;
+                                &:first-child {
+                                    margin-left: 0px;
+                                }
+                            }
+                        }
+                        >ul {
+                            padding: 20px 20px 20px 10px;
+                            .title-part>ul>li {
+                                width: 100%;
+                                textarea {
+                                    width: calc(100% - 50px);
+                                    padding: 5px;
+                                    font-size: 12px;
+                                    line-height: 1.6;
+                                }
+                                .example-btn {
+                                    width: 50px;
+                                    right: 0;
+                                }
+                            }
+                            .otherSettings {
+                                height: initial;
+                                >ul {
+                                    li:nth-child(3) {
+                                        margin-right: 15px;
+                                    }
+                                    li:nth-child(4) {
+                                        margin-left: 0px;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                .unit-meta .header{
+                .unit-meta .header {
                     padding-left: 15px;
+                }
+                .unit-code {
+                    .show-detail {
+                        height: 400px;
+                    }
+                    .content {
+                        >ul>li> {
+                            label {
+                                width: 60px;
+                            }
+                            ul {
+                                width: calc(100% - 80px);
+                                .CodeMirror {
+                                    height: 150px;
+                                }
+                            }
+                        }
+                        button {
+                            margin-left: 80px;
+                            padding: 2px 7px;
+                            height: 25px;
+                            line-height: 25px;
+                        }
+                    }
                 }
             }
         }
@@ -120,6 +255,33 @@
             .copyright {
                 line-height: 40px;
                 height: 40px;
+            }
+        }
+    }
+    .publish-dialog .ant-modal-content {
+        .ant-modal-body {
+            padding: 30px 20px 10px 50px;
+            width: 100%;
+            .dirname {
+                height: 80px;
+                p {
+                    bottom: 25px;
+                    line-height: 17px;
+                }
+            }
+        }
+    }
+    .clean-dialog .ant-modal-content {
+        .ant-modal-body {
+            padding: 20px 20px 10px;
+            width: 100%;
+            .clear-info {
+                margin-bottom: 10px;
+                height: 80px;
+                p {
+                    bottom: 18px;
+                    line-height: 17px;
+                }
             }
         }
     }

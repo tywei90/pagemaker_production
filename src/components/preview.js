@@ -526,7 +526,7 @@ class Preview extends React.Component {
 			        </div>
 		        </Modal>
 		        <Modal title="哇塞，这都被你发现啦！"
-					wrapClassName="publish-dialog"
+					wrapClassName="clean-dialog"
 					maskClosable={false}
 		         	visible={visible2}
 		         	onOk={this.handleOk2.bind(this)}

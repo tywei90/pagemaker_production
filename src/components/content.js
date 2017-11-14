@@ -223,6 +223,7 @@ class Content extends React.Component {
                     <span className="J_insert" onClick={() => this.setState({visible: true})}>导入</span>|
                     <span className="J_output" onClick={this.download}>导出</span>|
                     <span className="J_clear" onClick={this.clearSettings}>清空</span>)
+                    <em id="J_preview">预览<i className="icon iconfont icon-yulan"></i></em>
                 </div>
                 <ul id="unitMain">
                     {renderUnits(unit)}
