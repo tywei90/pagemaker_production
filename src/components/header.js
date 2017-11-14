@@ -37,6 +37,7 @@ class Header extends React.Component {
         const {username} = this.state;
         return (
             <header className="f-cb">
+                <i className="aside-unitList icon iconfont icon-zhankai" id="J_aside"></i>
                 <a href="/" className="goHome icon iconfont icon-fire f-fl"></a>
                 <div className="links f-fl">
                     <a className="active" href="/">pagemaker</a>
@@ -44,7 +45,10 @@ class Header extends React.Component {
                     <a href="/h5">动效页</a>
                 </div>
                 <div className="user f-fr">
-                    <a href="/users">您好，{username}</a>
+                    {screen.width > 800?
+                        <a href="/users">您好，{username}</a> :  
+                        <a>您好，{username}</a>
+                    }
                 </div>
             </header>
         );

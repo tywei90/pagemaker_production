@@ -10,6 +10,16 @@
 		padding: 10px 0;
 		margin: 0 auto;
 	}
+	.mask{
+		position: fixed;
+	    display: none;
+	    left: 0;
+	    top: 0;
+	    bottom: 0;
+	    right: 0;
+	    background: rgba(0,0,0,.8);
+	    z-index: 15;
+	}
 }
 .m-body{
 	// 解决antd污染全局样式，默认所有都是border-box

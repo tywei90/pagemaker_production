@@ -17,6 +17,11 @@ import { Modal } from 'antd';
 import $ from 'jquery'
 
 class App extends React.Component {
+    handleClickMask(event){
+        $('.m-units-list').css('left', '-200px');
+        $('.m-preview').hide();
+        $('.mask').hide();
+    }
     showConfirm(address) {
         Modal.confirm({
             title: '温馨提示',
@@ -80,19 +85,33 @@ class App extends React.Component {
         // 预览部分自适应
         var setPreviewSize = function(){
             let wHeight = window.innerHeight;
-            let ratio = (wHeight - 100)/820;
+            let wWidth = window.innerWidth;
+            let ratio = wWidth < 800? wHeight/800 : (wHeight - 100)/820;
             $('.m-preview').css('transform', `scale(${ratio})`);
         }
         setPreviewSize();
         $(window).on('resize', function(){
             setPreviewSize();
-        })
+        });
+        // 侧边栏背景自适应
+        if((screen.width < 800) && ($('.m-units-list').height() > $('.m-units-list ul').height() + 200)){
+            $('.m-units-list ul').css('height', '100%');
+        }
+        $('#J_aside').click(function(event) {
+            $('.m-units-list').css('left', '0');
+            $('.mask').show();
+        });
+        $('#J_preview').click(function(event) {
+            $('.m-preview').show();
+            $('.mask').show();
+        });
     }
     render() {
         
         return (
             <div id="main">
                 <Header />
+                <div className="mask" onClick={this.handleClickMask}></div>
                 <div className="m-body f-cb">
                     <UnitsList />
                     <Content />

@@ -111,7 +111,7 @@ class UnitAudio extends React.Component {
                     </li>
                     <li className="f-cb">
                         <label className="f-fl">定位</label>
-                        <ul className="f-fr">
+                        <ul className="f-fr audio-position">
                             <li className="f-fl">
                                 <input 
                                     type="radio" 
