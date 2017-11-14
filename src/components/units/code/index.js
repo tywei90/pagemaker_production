@@ -27,9 +27,22 @@ class UnitCode extends React.Component {
         const {data, id} = this.props;
         return (
             <UnitPanel id={id} type={data.get('type').toLowerCase()} unitName={data.get('name')}>
-                <div ref="jsdiv"></div>
-                <div ref="cssdiv"></div>
-                <button onClick={(e) => this.saveCode(e)}>保存编辑</button>
+                <ul>
+                    <li className="f-cb">
+                        <label className="f-fl">样式(CSS)</label>
+                        <ul ref="cssdiv" className="css-input f-fr"></ul>
+                    </li>
+                    <li className="f-cb">
+                        <label className="f-fl">脚本(JS)</label>
+                        <ul ref="jsdiv" className="js-input f-fr"></ul>
+                    </li>
+                    <li className="f-cb">
+                        <button className="f-fl" onClick={(e) => this.saveCode(e)}>保存编辑</button>
+                    </li>
+                </ul>
+                
+                
+                
             </UnitPanel>
         );
     }
