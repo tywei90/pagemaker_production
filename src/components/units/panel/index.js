@@ -85,6 +85,7 @@ class UnitPanel extends React.Component {
         const {pageX, pageY, dragFlag} = this.state;
         if (dragFlag) {
             e.preventDefault();
+            e = e.changedTouches? e.changedTouches[0]: e;
             const fid = parseInt(this.panel.id);
             const moveEvent = {
                 moveX: e.pageX - pageX,
@@ -135,7 +136,10 @@ class UnitPanel extends React.Component {
                         onClick={(e) => !e.target.className.indexOf('header') && this.setState({'showDetail': !showDetail})}
                         onMouseDown={(e) => this.handleMouseDown(e)}
                         onMouseMove={(e) => this.handleMouseMove(e)}
-                        onMouseUp={(e) => this.handleMouseUp(e)}>
+                        onMouseUp={(e) => this.handleMouseUp(e)}
+                        onTouchStart={(e) => this.handleMouseDown(e.touches[0])}
+                        onTouchMove={(e) => this.handleMouseMove(e.touches[0])}
+                        onTouchEnd={(e) => this.handleMouseUp(e)}>
                         <i className="f-fl f-hide2 icon iconfont icon-iconfontbi" onClick={() => this.refs.name.focus()}></i>
                         <input 
                             className="f-fl"
@@ -155,7 +159,7 @@ class UnitPanel extends React.Component {
                 </div>
             :
                 <div className={`unit-common unit-${type} ${cls}`}>
-                    <div className="header f-cb" onClick={(e) => !e.target.className.indexOf('header') && this.setState({'showDetail': !showDetail})}>
+                    <div className="header f-cb" onClick={(e) => this.setState({'showDetail': !showDetail})}>
                         <span className="f-fl">{unitName}</span>
                         <i className={`f-fr icon iconfont icon-zhankaianniu ${showDetail? "arrow-up": "arrow-down"}`} onClick={(e) => this.setState({'showDetail': !showDetail})}></i>
                     </div>
