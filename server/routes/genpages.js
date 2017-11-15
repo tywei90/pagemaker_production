@@ -123,36 +123,72 @@ router.get('/username', function(req, res, next) {
 
 /* 通过目录名称获取配置文件接口 */
 router.post('/getConfig', function(req, res, next) {
-    let dirname = req.body.dirname;
-    let filepath = './data/';
-    let existDirname = [];
-    fs.readdir(filepath, function(err, files) {
-        if (err) {
-            return console.error(err);
-        }
-        files.forEach(function(file) {
-            let stats = fs.statSync(filepath + file);
-            if(stats.isDirectory() && /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(file)){
-                existDirname.push(file);
+    let inputInfo = req.body.inputInfo;
+    let dirname = '';
+    let matchArr = inputInfo.match(/^https:\/\/pagemaker\.wty90\.com\/release\/(.*)\.html$/);
+    // 完整线上地址
+    if(matchArr){
+        dirname = matchArr[1];
+    }
+    // 发布目录
+    if(/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(inputInfo)){
+        dirname = inputInfo;
+    }
+    if(dirname){
+        let filepath = './data/';
+        let existDirname = [];
+        fs.readdir(filepath, function(err, files) {
+            if (err) {
+                return console.error(err);
+            }
+            files.forEach(function(file) {
+                let stats = fs.statSync(filepath + file);
+                if(stats.isDirectory() && /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(file)){
+                    existDirname.push(file);
+                }
+            });
+            if(existDirname.indexOf(dirname) != -1){
+                fs.readFileAsync(filepath + dirname + '/config.json', 'utf-8')
+                .then(data => JSON.parse(data))
+                .then((result) => {
+                    res.json({
+                        config: result,
+                        retcode: 200,
+                        retdesc: '线上配置导入成功'
+                    });
+                })
+            }else{
+                res.json({
+                    retcode: 400,
+                    retdesc: '输入信息错误'
+                });
             }
         });
-        if(existDirname.indexOf(dirname) != -1){
-            fs.readFileAsync(filepath + dirname + '/config.json', 'utf-8')
-            .then(data => JSON.parse(data))
-            .then((result) => {
-                res.json({
-                    config: result,
-                    retcode: 200,
-                    retdesc: '导入成功'
-                });
-            })
+    }else{
+        // 输入json配置信息
+        try{
+            JSON.parse(inputInfo);
+        }
+        catch(err){
+            res.json({
+                retcode: 400,
+                retdesc: '输入信息错误'
+            });
+        }
+        var parseData = JSON.parse(inputInfo);
+        if(Array.isArray(parseData) && parseData[0].type == 'META'){
+            res.json({
+                retcode: 200,
+                retdesc: '本地配置导入成功',
+                config: parseData
+            });
         }else{
             res.json({
                 retcode: 400,
-                retdesc: '发布目录不存在'
+                retdesc: "输入信息错误"
             });
         }
-    });
+    }
 });
 
 /* 页面发布接口 */
