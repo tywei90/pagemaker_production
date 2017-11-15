@@ -122,7 +122,7 @@ class UnitAudio extends React.Component {
                                     defaultChecked={data.get('position') === "topLeft"}
                                     onClick={()=>unitAction.editUnit(id, 'position', this.refs.topLeft.value)}
                                 />
-                                <label htmlFor={`topLeft${id}`}>左上角</label>
+                                <label htmlFor={`topLeft${id}`}>左上</label>
                             </li>
                             <li className="f-fl">
                                 <input 
@@ -134,7 +134,7 @@ class UnitAudio extends React.Component {
                                     defaultChecked={data.get('position') === "topRight"}
                                     onClick={()=>unitAction.editUnit(id, 'position', this.refs.topRight.value)}
                                 />
-                                <label htmlFor={`topRight${id}`}>右上角</label>
+                                <label htmlFor={`topRight${id}`}>右上</label>
                             </li>
                             <li className="f-fl">
                                 <input 
@@ -146,7 +146,7 @@ class UnitAudio extends React.Component {
                                     defaultChecked={data.get('position') === "bottomRight"}
                                     onClick={()=>unitAction.editUnit(id, 'position', this.refs.bottomRight.value)}
                                 />
-                                <label htmlFor={`bottomRight${id}`}>右下角</label>
+                                <label htmlFor={`bottomRight${id}`}>右下</label>
                             </li>
                             <li className="f-fl">
                                 <input 
@@ -158,7 +158,7 @@ class UnitAudio extends React.Component {
                                     defaultChecked={data.get('position') === "bottomLeft"}
                                     onClick={()=>unitAction.editUnit(id, 'position', this.refs.bottomLeft.value)}
                                 />
-                                <label htmlFor={`bottomLeft${id}`}>左下角</label>
+                                <label htmlFor={`bottomLeft${id}`}>左下</label>
                             </li>
                         </ul>
                     </li>

@@ -191,6 +191,12 @@
                                     margin-left: 0px;
                                 }
                             }
+                            .other-set2 li {
+                                margin-left: 10px;
+                                &:first-child {
+                                    margin-left: 0px;
+                                }
+                            }
                         }
                         >ul {
                             padding: 20px 10px;

@@ -167,12 +167,14 @@ class Content extends React.Component {
         const uploadProps = {
             name: 'file',
             action: '/upload',
-            accept: '.json',
             headers: {
                 authorization: 'authorization-text',
             },
             onChange: this.handleChange.bind(this)
         };
+        if(screen.width > 800){
+            uploadProps.accept = '.jpg';
+        }
         return (
             <section className="m-content f-fl">
                 <Modal title="导入配置"
