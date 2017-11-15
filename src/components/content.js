@@ -148,24 +148,17 @@ class Content extends React.Component {
         })
         .then(response => response.json())
         .then(data => {
-            var a = document.createElement('a');
-            a.href = data.filepath;
-            a.download = 'config.json';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            return data
+            if(screen.width > 800){
+                var a = document.createElement('a');
+                a.href = data.filepath;
+                a.download = 'config.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }else{
+                location.href = data.filepath;
+            }
         })
-        // 预删除后台下载生成的目录失败
-        // .then((data) => {
-        //     fetch('/delete', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(data.filepath)
-        //     })
-        // })
         .catch(e => console.log("Oops, error", e))
     }
     render() {

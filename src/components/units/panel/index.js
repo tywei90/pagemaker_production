@@ -70,6 +70,8 @@ class UnitPanel extends React.Component {
     handleMouseMove(e) {
         const {pageX, pageY, dragFlag} = this.state;
         if (dragFlag) {
+            e.preventDefault();
+            e = e.touches? e.touches[0]: e;
             const moveEvent = {
                 moveX: e.pageX - pageX,
                 moveY: e.pageY - pageY
@@ -138,7 +140,7 @@ class UnitPanel extends React.Component {
                         onMouseMove={(e) => this.handleMouseMove(e)}
                         onMouseUp={(e) => this.handleMouseUp(e)}
                         onTouchStart={(e) => this.handleMouseDown(e.touches[0])}
-                        onTouchMove={(e) => this.handleMouseMove(e.touches[0])}
+                        onTouchMove={(e) => this.handleMouseMove(e)}
                         onTouchEnd={(e) => this.handleMouseUp(e)}>
                         <i className="f-fl f-hide2 icon iconfont icon-iconfontbi" onClick={() => this.refs.name.focus()}></i>
                         <input 
