@@ -28,7 +28,7 @@ a {
     text-decoration: none;
 }
 
-input{
+input,textarea{
     outline: 0;
 }
 
@@ -103,3 +103,19 @@ ul {
     /* Internet Explorer 10+ */
     color: #bdbdbd;
 }
+// 去掉ios内置输入框阴影
+textarea[type=text],input[type=text]{
+    -webkit-appearance: none;
+}
+input[type=text]{
+    overflow: scroll;
+}
+// 去掉移动端长按区域高亮
+html{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
+
+
+
