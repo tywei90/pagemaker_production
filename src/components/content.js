@@ -78,7 +78,7 @@ class Content extends React.Component {
                 confirmLoading: false
             });
             if(info.file.response.file.ok){
-                // console.log(info.file.response.file.data);
+                console.log(info.file.response.file.data);
                 unitAction.clear();
                 unitAction.insert(info.file.response.file.data);
                 message.success(`${info.file.name} 导入成功！`);
@@ -167,13 +167,14 @@ class Content extends React.Component {
         const uploadProps = {
             name: 'file',
             action: '/upload',
+            accept: '.json',
             headers: {
                 authorization: 'authorization-text',
             },
             onChange: this.handleChange.bind(this)
         };
-        if(screen.width > 800){
-            uploadProps.accept = '.jpg';
+        if(screen.width < 800){
+            uploadProps.accept = '.json,.txt,.js';
         }
         return (
             <section className="m-content f-fl">
