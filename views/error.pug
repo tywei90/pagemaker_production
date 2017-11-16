@@ -1,8 +1,14 @@
-extends layout
+doctype html
+html
+	head
+		title= 'error'
+		favicon(src='/public/favicon.ico') 
+		meta(name='viewport' content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui')
+	body
+		block content
+			h1= message
+			h2= error.status
+			p 您访问的页面不存在，已经开发的网页如下：
+			a(href='/') pagemaker页面制作工具
 
 
-block content
-	h1= message
-	h2= error.status
-	p 您访问的页面不存在，已经开发的网页如下：
-	a(href='/') pagemaker页面制作工具

@@ -1,4 +1,30 @@
-include ./mixins/base
+mixin jsFile(files)
+	each file in files
+		script(type='text/javascript' src=file)
+
+mixin cssFile(files)
+	each file in files
+		link(rel='stylesheet' href=file)
+
+mixin commonCSS
+	style.
+		body{
+			padding: 50px;
+			font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+		}
+
+		a{
+			color: #00B7FF
+		}
+
+		li{
+			font-size: 18px;
+			margin-top: 10px;
+		}
+
+mixin commonJS
+	script(type='text/javascript').
+		console.log('加载公共脚本文件');
 
 mixin docHead(config)
 	doctype html
@@ -33,6 +59,10 @@ mixin docHead(config)
 				var s = document.getElementsByTagName("script")[0]; 
 				s.parentNode.insertBefore(hm, s);
 				})();
+			if !config.noIncludeCommon
+				+commonCSS
+				+commonJS
+
 		body
 			noscript
 				#noScript

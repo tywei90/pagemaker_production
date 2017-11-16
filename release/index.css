@@ -302,14 +302,14 @@ ul {
 }
 
 .mscBtn i.music-play {
-    background: url(../src/img/music1.png) no-repeat;
+    background: url(/public/music1.png) no-repeat;
     background-size: 100%;
     z-index: 1;
     opacity: 1;
 }
 
 .mscBtn i.music-pause {
-    background: url(../src/img/music2.png) no-repeat;
+    background: url(/public/music2.png) no-repeat;
     background-size: 100%;
     z-index: 2;
     opacity: 0;

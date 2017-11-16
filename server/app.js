@@ -19,19 +19,13 @@ var app = express();
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, '../build/image', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(require('less-middleware')(path.join(__dirname, 'public')));
-app.use('/build', express.static(path.join(__dirname, '../build')));
 app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use('/release', express.static(path.join(__dirname, '../release')));
-app.use('/tmp', express.static(path.join(__dirname, '../tmp')));
 app.use('/files', express.static(path.join(__dirname, '../files')));
-app.use('/src', express.static(path.join(__dirname, '../src')));
 
 
 

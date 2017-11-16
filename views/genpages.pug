@@ -1,15 +1,16 @@
 include ./common/docHead
 
-//- http://127.0.0.1:8080/build/main.css
-//- http://127.0.0.1:8080/build/main.js
+//- http://127.0.0.1:8080/public/main.css
+//- http://127.0.0.1:8080/public/main.js
 
 +docHead({
 	title:'前端页面制作工具',
 	keywords:'制作工具,pagemaker,h5页面制作',
 	description: '触屏版信息页::制作工具',
-	favicon: '/src/img/favicon.ico',
+	favicon: '/public/favicon.ico',
+	noIncludeCommon: true,
 	cssFile: [
-		'https://pagemaker.wty90.com/build/main.css', 
+		'http://127.0.0.1:8080/public/main.css', 
 		'https://cdn.bootcss.com/antd/2.5.2/antd.min.css', 
 		'https://cdn.bootcss.com/codemirror/5.28.0/codemirror.min.css',
 		'https://cdn.bootcss.com/codemirror/5.28.0/theme/monokai.min.css'
@@ -27,5 +28,5 @@ body
 		'https://cdn.bootcss.com/react-router/3.2.0/ReactRouter.min.js',
 		'https://cdn.bootcss.com/immutable/3.8.1/immutable.min.js',
 		'https://cdn.bootcss.com/antd/2.5.2/antd.min.js', 
-		'https://pagemaker.wty90.com/build/main.js'
+		'http://127.0.0.1:8080/public/main.js'
 	])

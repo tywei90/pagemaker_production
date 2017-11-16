@@ -11,8 +11,8 @@ module.exports = {
 
     entry: __dirname + '/src/index.js', //唯一入口文件
     output: {
-        path: __dirname + '/build', //打包后的文件存放的地方
-        publicPath: '/build/',
+        path: __dirname + '/public', //打包后的文件存放的地方
+        publicPath: '/public/',
         filename: 'main.js' //打包后输出文件的文件名
     },
 
