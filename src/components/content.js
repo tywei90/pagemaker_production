@@ -78,10 +78,13 @@ class Content extends React.Component {
                 confirmLoading: false
             });
             if(info.file.response.file.ok){
-                console.log(info.file.response.file.data);
-                unitAction.clear();
-                unitAction.insert(info.file.response.file.data);
-                message.success(`${info.file.name} 导入成功！`);
+                if(/\.json$/.test(info.file.response.file.url)){
+                    unitAction.clear();
+                    unitAction.insert(info.file.response.file.data);
+                    message.success(`${info.file.name} 导入成功！`);
+                }else{
+                    message.error('文件格式错误');
+                }
             }else{
                 message.error(`${info.file.response.file.des}，导入失败！`);
             }

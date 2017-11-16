@@ -12,4 +12,6 @@ npm-debug.log
 
 # 发布输出目录
 tmp
-
+data
+files
+release
