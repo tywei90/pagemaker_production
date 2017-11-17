@@ -26,6 +26,12 @@ mixin commonJS
 	script(type='text/javascript').
 		console.log('加载公共脚本文件');
 
+mixin debugJS
+	//- 手机端console插件
+	script(type='text/javascript' src='/public/vconsole.min.js')
+	script(type='text/javascript').
+		var vConsole = new VConsole();
+
 mixin docHead(config)
 	doctype html
 	html(lang='zh-CN')
@@ -43,8 +49,6 @@ mixin docHead(config)
 				meta(name='description' content=config.description)
 			if config.cssFile && config.cssFile.length > 0
 				+cssFile(config.cssFile)
-			if config.jsFile && config.jsFile.length > 0
-				+jsFile(config.jsFile)
 			script(async src='https://www.googletagmanager.com/gtag/js?id=UA-109240313-1')
 			script(type='text/javascript').
 				window.dataLayer = window.dataLayer || [];
@@ -59,7 +63,11 @@ mixin docHead(config)
 				var s = document.getElementsByTagName("script")[0]; 
 				s.parentNode.insertBefore(hm, s);
 				})();
-			if !config.noIncludeCommon
+			if config.debugJS
+				+debugJS
+			if config.jsFile && config.jsFile.length > 0
+				+jsFile(config.jsFile)
+			if !config.notCommon
 				+commonCSS
 				+commonJS
 

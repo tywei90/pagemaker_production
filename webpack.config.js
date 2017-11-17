@@ -65,7 +65,6 @@ module.exports = {
 
     externals: {
         "jquery": "jQuery",
-        'antd': 'antd',
         "react": "React",
         "react-dom": "ReactDOM",
         'CodeMirror': 'CodeMirror',
@@ -82,6 +81,8 @@ if (process.env.NODE_ENV === 'production') {
                 NODE_ENV: '"production"'
             }
         }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: false,
             output: {
@@ -90,7 +91,6 @@ if (process.env.NODE_ENV === 'production') {
             compress: {
                 warnings: false
             }
-        }),
-        new webpack.optimize.OccurenceOrderPlugin()
+        })
     ])
 }
