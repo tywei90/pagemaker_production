@@ -55,15 +55,16 @@ router.post('/download', function(req, res, next) {
 /* files文件夹清理接口 */
 router.post('/clear', function(req, res, next) {
     let password = req.body.password;
+    let type = req.body.type;
     // 验证平台密码
-    fs.readFileAsync('./data/password.json', 'utf-8')
+    fs.readFileAsync('./data/server_code.json', 'utf-8')
     .then(data => JSON.parse(data))
     .then(tmp => bcrypt.compare(password, tmp.value))
     .then((result) => {
         if(!result){
             res.json({
                 retcode: 400,
-                retdesc: '平台密码错误'
+                retdesc: '后台密码错误'
             });
             // 所有想直接结束promise链的，直接reject掉，去catch里处理
             return Promise.reject();
@@ -82,7 +83,8 @@ router.post('/clear', function(req, res, next) {
             // 下载目录一定清空
             let delFilesArr = dir.getFilesSync('./files/download/');
             // 上传目录会清理一个月前的文件
-            let fileArr = dir.getFilesSync('./files/upload/', 30*24*3600*1000);
+            let time = type == 'shallow'? 30*24*3600*1000: 0;
+            let fileArr = dir.getFilesSync('./files/upload/', time);
             dir.rmdirSync('./files/download/');
             fileArr.forEach(function(file, index){
                 if(configStr.indexOf(file) == -1){
