@@ -32,6 +32,9 @@ mixin debugJS
 	script(type='text/javascript').
 		var vConsole = new VConsole();
 
+mixin debugCSS(ip)
+	script(type='text/javascript' src="http://" + ip + ":8081/target/target-script-min.js#anonymous")
+
 mixin docHead(config)
 	doctype html
 	html(lang='zh-CN')
@@ -65,6 +68,8 @@ mixin docHead(config)
 				})();
 			if config.debugJS
 				+debugJS
+			if config.debugCSS_IP
+				+debugCSS(config.debugCSS_IP)
 			if config.jsFile && config.jsFile.length > 0
 				+jsFile(config.jsFile)
 			if !config.notCommon
