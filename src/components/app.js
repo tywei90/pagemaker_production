@@ -105,6 +105,11 @@ class App extends React.Component {
             $('.m-preview').show();
             $('.mask').show();
         });
+        $('#app').on('touchmove',function(e) {
+            if($('.m-preview').css('display') == 'block' && $('.mask').css('display') == 'block'){
+                e.preventDefault();
+            }
+        });
     }
     render() {
         

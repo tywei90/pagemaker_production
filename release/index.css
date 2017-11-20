@@ -196,6 +196,10 @@ ul {
     top: -99999px
 }
 
+#framePage{
+    position: relative;
+}
+
 #framePage .title a {
     display: block;
     text-decoration: none;
@@ -254,6 +258,20 @@ ul {
 
 #framePage .noUL .article-content a {
     text-decoration: none;
+}
+
+#copyright{
+    position: absolute;
+    bottom: 10px;
+    left:0;
+    width: 100%;
+    text-align: right;
+    font-size: 12px;
+}
+
+#copyright a{
+    color: rgb(85, 26, 139);
+    margin-right: 10px;
 }
 
 /*音频样式*/

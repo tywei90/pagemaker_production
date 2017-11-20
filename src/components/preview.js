@@ -76,7 +76,8 @@ class Preview extends React.Component {
 	    	confirmLoading3: false,
 	    	isDirnameExist: false,
 	    	visible2: false,
-	    	errTip3: ''
+	    	errTip3: '',
+	    	cleanType: 'shallow'
 	  	}
 	}
 	showReleaseModal(){
@@ -236,9 +237,7 @@ class Preview extends React.Component {
 		    	confirmLoading2: false,
 		    });
             if(data.retcode == 200){
-            	this.setState({
-            		visible: false
-            	});
+            	this.handleCancel();
             	Modal.success({
 			    	title: '页面删除成功!',
 			    	content: <div>查看已发布的页面<a href="/released">点击这里</a></div>,
@@ -279,7 +278,10 @@ class Preview extends React.Component {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ password })
+            body: JSON.stringify({ 
+            	password,
+            	type: this.state.cleanType
+            })
         })
         .then(response => response.json())
         .then(data => {
@@ -380,8 +382,6 @@ class Preview extends React.Component {
 		let me = this;
 		const { unit } = this.props;
 		let localData = unit.toJS();
-		// 增加参数fromType，表明这次是那个组件变化的，确定需不需要执行这部分代码
-		if(localData[0].fromType != 'AUDIO' && localData[0].fromType != 'CODE' && localData[0].fromType != 'ALL') return;
 		let jsArr = [];
 		let cssArr = [];
 		// 在iframe的head里动态插入执行脚本，保证js执行环境一致
@@ -413,17 +413,23 @@ class Preview extends React.Component {
 			script2.parentNode.removeChild(script2);
 		}
 		if(isMount){
+			// 修改iphone手机上iframe会撑开父元素的高度bug
+			body.style.height = '549px';
+			body.style.overflow = 'scroll';
 			// 脚本需要在jquery加载完毕后执行
 			$jquery.on('load', function(){
 				reload()
 			})
 		}else{
-			reload()
+			// 增加参数fromType，表明这次是那个组件变化的，确定需不需要执行这部分代码
+			if(localData[0].fromType == 'AUDIO' || localData[0].fromType == 'CODE' || localData[0].fromType == 'ALL'){
+				reload()
+			}
 		}
 	}
 	render() {
 		const { unit } = this.props;
-		const { visible, visible2, confirmLoading, confirmLoading2, confirmLoading3, stateTip, placeholder, errTip1, errTip2, errTip3, stateOK, isDirnameExist } = this.state;
+		const { visible, visible2, confirmLoading, confirmLoading2, confirmLoading3, stateTip, placeholder, errTip1, errTip2, errTip3, stateOK, isDirnameExist, cleanType } = this.state;
 		//初始化meta部分数据
 		let localData = unit.toJS();
 		let data = localData[0];
@@ -451,6 +457,7 @@ class Preview extends React.Component {
 	  					contentDidUpdate={this.init.bind(this, false)}
 	  					mountTarget='#framePage'>
 					{renderUnits(unit)}
+					<div id="copyright">Powered by <a target="_blank" href="https://www.wty90.com/">Teal</a></div>
 				</Frame>
 				<Modal title="请输入发布信息"
 					wrapClassName="publish-dialog"
@@ -550,16 +557,43 @@ class Preview extends React.Component {
 		          	]}
 		         >
 		         	<div className="clear-info">
-		         		这是清理后台上传和下载无用文件的按钮。清理下，让系统更流畅吧😁
-		         		<p>注意：这会清理一个月前上传到服务器但是没有发布的文件，将会导致部分用户缓存文件加载不了。</p>
+		         		<div>这是清理后台上传和下载无用文件的按钮，非管理员勿动！</div>
+		         		<ul className="f-cb">
+		         		  <label className="f-fl">请选择清理类型： </label>
+                          <li className="f-fl">
+                            <input
+                            	name="cleanRadio"
+                            	id="shallow"
+                                type="radio"
+                                value='shallow'
+                                ref="shallow"
+                                checked={cleanType == "shallow"}
+                                onChange={()=>{this.setState({cleanType: 'shallow'})}}
+                            />
+                            <label htmlFor="shallow">普通清理</label>
+                          </li>
+                          <li className="f-fl">
+                            <input
+                            	name="cleanRadio"
+                            	id="deep"
+                                type="radio"
+                                value='deep'
+                                ref="deep"
+                                checked={cleanType == "deep"}
+                                onChange={()=>{this.setState({cleanType: 'deep'})}}
+                            />
+                            <label htmlFor="deep">深度清理</label>
+                          </li>
+                        </ul>
+		         		<p>注意：普通清理会清理一个月前上传到服务器但是没有发布的文件，深度清理会立刻执行。都将会导致用户缓存文件加载失败。</p>
 			        </div>
 			        <div className="password">
-			        	<label>平台密码</label>
+			        	<label>后台密码</label>
 			        	<input 
 			        		ref="password2" 
-			        		name="平台密码" 
+			        		name="后台密码" 
 			        		type="password" 
-			        		placeholder="请输入平台密码"
+			        		placeholder="请输入后台密码"
 			        		onInput={this.handleInput2.bind(this)}
 			        		onFocus={()=>{this.setState({errTip3: ''})}}/>
 			         	<p className="errTip3"><i className={`iconfont icon-cuowu ${errTip3 == ""? "f-hide" : ""}`}></i>{errTip3}</p>

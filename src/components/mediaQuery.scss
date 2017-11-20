@@ -272,10 +272,13 @@
             width: 100%;
             .clear-info {
                 margin-bottom: 10px;
-                height: 80px;
+                height: 100px;
                 p {
-                    bottom: 18px;
+                    bottom: 25px;
                     line-height: 17px;
+                }
+                ul {
+                    margin-top: 5px;
                 }
             }
         }
