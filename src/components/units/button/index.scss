@@ -1,7 +1,7 @@
 #app {
 	.unit-button{
 		.show-detail{
-			height: 350px;
+			height: 300px;
 		}
 		.hide-detail{
 			height: 0;
@@ -9,6 +9,6 @@
 		}
 	}
 	.low-height .show-detail{
-		height: 260px;
+		height: 210px;
 	}
 }

@@ -6,8 +6,7 @@ const unitsConfig = immutable.fromJS({
         name: 'META信息配置',
         title: '',
         keywords: '',
-        desc: '',
-        bgColor: '#fff'
+        desc: ''
     },
     TITLE: {
         type: 'TITLE',
@@ -38,7 +37,6 @@ const unitsConfig = immutable.fromJS({
         margin: [
             0, 30, 20, 30
         ],
-        appOrder: '',
         buttonStyle: "yellowStyle",
         bigRadius: true,
         style: 'default'
@@ -85,7 +83,6 @@ const initialState = immutable.fromJS([
         title: '',
         keywords: '',
         desc: '',
-        bgColor: '#fff',
         // 非常重要的属性，表明这次state变化来自哪个组件！
         fromType: ''
     }
@@ -116,13 +113,14 @@ function reducer(state = initialState, action) {
             break
         }
         case 'RemoveUnit': {
+            const type = state.getIn([action.id, 'type']);
             tmp = state.splice(action.id, 1);
-            newState = tmp.setIn([0, 'fromType'], '');
+            newState = tmp.setIn([0, 'fromType'], type);
             break
         }
         case 'Clear': {
             tmp = initialState;
-            newState = tmp.setIn([0, 'fromType'], '');
+            newState = tmp.setIn([0, 'fromType'], 'ALL');
             break
         }
         case 'Insert': {
@@ -144,7 +142,7 @@ function reducer(state = initialState, action) {
         default:
             newState = state;
     }
-    // console.table([newState.toJS()[4]]);
+    // console.log(newState.toJS());
     // 更新localstorage，便于恢复现场
     localStorage.setItem('config', JSON.stringify(newState.toJS()));
     return newState

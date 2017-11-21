@@ -123,17 +123,6 @@ class UnitButton extends React.Component {
                             onChange={()=>unitAction.editUnit(id, 'url', this.refs.url.value)}
                         />
                     </li>
-                    <li>
-                        <label className="f-fl">APP命令</label>
-                        <input 
-                            className="f-fr"
-                            type="text"
-                            placeholder="客户端功能命令，仅当在内嵌客户端时生效"
-                            value={data.get('appOrder')}
-                            ref="appOrder"
-                            onChange={()=>unitAction.editUnit(id, 'appOrder', this.refs.appOrder.value)}
-                        />
-                    </li>
                     <li className={`${data.get('style') == "default"? "show-default" : "f-hide"}`}>
                         <label className="f-fl">配色</label>
                         <ul className="f-fr">

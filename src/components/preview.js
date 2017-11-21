@@ -443,20 +443,12 @@ class Preview extends React.Component {
 				}, 200);
 			})
 			// 脚本需要在jquery加载完毕后执行
-			if(initType){
-				$jquery.on('load', function(){
-					reload(initType);
-				})
-			}
+			$jquery.on('load', function(){
+				reload(initType);
+			})
 		}else{
 			// 增加参数fromType，表明这次是那个组件变化的，确定需不需要执行这部分代码
-			if(localData[0].fromType == 'AUDIO'){
-				reload('AUDIO');
-			}else if(localData[0].fromType == 'CODE'){
-				reload('CODE');
-			}else if(localData[0].fromType == 'ALL' && initType != ''){
-				reload(initType);
-			}
+			reload(localData[0].fromType);
 		}
 	}
 	render() {
