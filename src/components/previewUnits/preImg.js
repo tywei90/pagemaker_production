@@ -32,9 +32,11 @@ class PreImg extends React.Component {
 		};
 		return (
 			<section className={`image`} style={style}>
-				<a href= {jsdata.url}>
-					<img src={jsdata.address} />	
-				</a>			
+				{jsdata.url?
+					<a href= {jsdata.url}><img src={jsdata.address} /></a>
+				:
+					<a><img src={jsdata.address} /></a>
+				}
 			</section>
 		)
 	}

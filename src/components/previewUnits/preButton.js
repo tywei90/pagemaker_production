@@ -64,7 +64,11 @@ class PreButton extends React.Component {
 		}
 		return (
 			<section className={`button`} style={style}>
-				<a style={styleInner} href={jsdata.url} data-cmd={jsdata.appOrder}>{jsdata.style == 'custome'? " " : jsdata.txt }</a>
+				{jsdata.url?
+					<a style={styleInner} href={jsdata.url}>{jsdata.style == 'custome'? " " : jsdata.txt }</a>
+				:
+					<a style={styleInner}>{jsdata.style == 'custome'? " " : jsdata.txt }</a>
+				}
 			</section>
 		)
 	}

@@ -40,9 +40,11 @@ class PreTitle extends React.Component {
 		}
 		return (
 			<section className={`title`} style={style}>
-				<a href= {jsdata.url}  style={styleInner} >
-					{jsdata.text}
-				</a>
+				{jsdata.url?
+					<a href={jsdata.url}  style={styleInner} >{jsdata.text}</a>
+				:
+					<a style={styleInner} >{jsdata.text}</a>
+				}
 			</section>
 		)
 	}
