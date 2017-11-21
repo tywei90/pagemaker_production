@@ -18,7 +18,7 @@ const unitsConfig = immutable.fromJS({
         fontSize: "middle",
         textAlign: "center",
         padding: [0, 0, 0, 0],
-        margin: [0, 0, 24, 0]
+        margin: [10, 0, 20, 0]
     },
     IMAGE: {
         type: 'IMAGE',
@@ -27,7 +27,7 @@ const unitsConfig = immutable.fromJS({
         url: '',
         bgColor: '#fff',
         padding: [0, 0, 0, 0],
-        margin: [0, 30, 24, 30]
+        margin: [10, 0, 20, 0]
     },
     BUTTON: {
         type: 'BUTTON',
@@ -36,7 +36,7 @@ const unitsConfig = immutable.fromJS({
         url: '',
         txt: '',
         margin: [
-            0, 30, 24, 30
+            0, 30, 20, 30
         ],
         appOrder: '',
         buttonStyle: "yellowStyle",
@@ -52,7 +52,7 @@ const unitsConfig = immutable.fromJS({
         fontSize: "small",
         textAlign: "center",
         padding: [0, 0, 0, 0],
-        margin: [0, 30, 24, 30],
+        margin: [0, 30, 20, 30],
         changeLine: true,
         retract: true,
         bigLH: true,

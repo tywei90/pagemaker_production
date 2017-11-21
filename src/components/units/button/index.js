@@ -207,6 +207,7 @@ class UnitButton extends React.Component {
                                         parseFloat(this.refs.marginBottom.value) || 0,
                                         parseFloat(this.refs.marginLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.marginTop.value = this.refs.marginTop.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -221,6 +222,7 @@ class UnitButton extends React.Component {
                                         parseFloat(this.refs.marginBottom.value) || 0,
                                         parseFloat(this.refs.marginLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.marginRight.value = this.refs.marginRight.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -235,6 +237,7 @@ class UnitButton extends React.Component {
                                         parseFloat(this.refs.marginBottom.value) || 0,
                                         parseFloat(this.refs.marginLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.marginBottom.value = this.refs.marginBottom.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -249,6 +252,7 @@ class UnitButton extends React.Component {
                                         parseFloat(this.refs.marginBottom.value) || 0,
                                         parseFloat(this.refs.marginLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.marginLeft.value = this.refs.marginLeft.value || 0}
                                 />
                             </li>
                         </ul>

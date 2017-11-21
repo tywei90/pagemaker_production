@@ -160,6 +160,7 @@ class UnitTitle extends React.Component {
                                         parseFloat(this.refs.paddingBottom.value) || 0,
                                         parseFloat(this.refs.paddingLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.paddingTop.value = this.refs.paddingTop.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -174,6 +175,7 @@ class UnitTitle extends React.Component {
                                         parseFloat(this.refs.paddingBottom.value) || 0,
                                         parseFloat(this.refs.paddingLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.paddingRight.value = this.refs.paddingRight.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -188,6 +190,7 @@ class UnitTitle extends React.Component {
                                         parseFloat(this.refs.paddingBottom.value) || 0,
                                         parseFloat(this.refs.paddingLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.paddingBottom.value = this.refs.paddingBottom.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -202,6 +205,7 @@ class UnitTitle extends React.Component {
                                         parseFloat(this.refs.paddingBottom.value) || 0,
                                         parseFloat(this.refs.paddingLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.paddingLeft.value = this.refs.paddingLeft.value || 0}
                                 />
                             </li>
                         </ul>
@@ -221,6 +225,7 @@ class UnitTitle extends React.Component {
                                         parseFloat(this.refs.marginBottom.value) || 0,
                                         parseFloat(this.refs.marginLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.marginTop.value = this.refs.marginTop.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -235,6 +240,7 @@ class UnitTitle extends React.Component {
                                         parseFloat(this.refs.marginBottom.value) || 0,
                                         parseFloat(this.refs.marginLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.marginRight.value = this.refs.marginRight.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -249,6 +255,7 @@ class UnitTitle extends React.Component {
                                         parseFloat(this.refs.marginBottom.value) || 0,
                                         parseFloat(this.refs.marginLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.marginBottom.value = this.refs.marginBottom.value || 0}
                                 />
                             </li>
                             <li className="f-fl label-left">
@@ -263,6 +270,7 @@ class UnitTitle extends React.Component {
                                         parseFloat(this.refs.marginBottom.value) || 0,
                                         parseFloat(this.refs.marginLeft.value) || 0
                                     ]))}
+                                    onBlur={() => this.refs.marginLeft.value = this.refs.marginLeft.value || 0}
                                 />
                             </li>
                         </ul>

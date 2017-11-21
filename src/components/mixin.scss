@@ -109,8 +109,9 @@
                     }
                     .upload{
                         position: absolute;
-                        right: 10px;
-                        top: 2px;
+                        right: 0px;
+                        top: -2px;
+                        padding: 2px 8px;
                         cursor: pointer;
                         .ant-upload-list{
                             display: none;
