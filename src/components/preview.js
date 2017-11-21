@@ -368,7 +368,7 @@ class Preview extends React.Component {
 						"gtag('config', 'UA-109240313-1');"+
 					'</script>'+
 				'</head>'+ 
-				'<body style="background-color: '+ data.bgColor +'">' + 
+				'<body>' + 
 					bodyContext + 
 					'<script  type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>' +
 					'<script  type="text/javascript" src="/release/index.js"></script>' +
@@ -382,6 +382,19 @@ class Preview extends React.Component {
 		let me = this;
 		const { unit } = this.props;
 		let localData = unit.toJS();
+		let typeArr = [];
+		let initType = '';
+		// 判断页面首次加载时的fromType
+		for(var i=0,len=localData.length; i<len; i++){
+			typeArr.push(localData[i].type);
+		}
+		if(typeArr.indexOf('AUDIO') != -1 && typeArr.indexOf('CODE') != -1){
+			initType = 'ALL';
+		}else if(typeArr.indexOf('AUDIO') != -1 && typeArr.indexOf('CODE') == -1){
+			initType = 'AUDIO';
+		}else if(typeArr.indexOf('AUDIO') == -1 && typeArr.indexOf('CODE') != -1){
+			initType = 'CODE';
+		}
 		let jsArr = [];
 		let cssArr = [];
 		// 在iframe的head里动态插入执行脚本，保证js执行环境一致
@@ -389,41 +402,60 @@ class Preview extends React.Component {
 		let iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 		let body= iframeDoc.getElementsByTagName('body')[0]; 
 		let $jquery = $('#jquery', iframeDoc);
-		function reload(){
-			let script= document.createElement('script');
-			script.type= 'text/javascript'; 
-			script.src= '/release/index.js'; 
-			body.appendChild(script);
-			// 页面不刷新，所以需要手动删除每次添加的节点
-			script.parentNode.removeChild(script);
-
-			// 插入页面添加的JSCSS组件脚本
-			localData.forEach(function(item, index){
-				if(item.type == 'CODE'){
-					jsArr.push(item.js);
-					cssArr.push(item.css);
-				}
-			})
-			let $insertCSS = $('#insertCSS', iframeDoc);
-			$insertCSS[0].innerText = me.insertCSS = cssArr.join('\n');
-			let script2= document.createElement('script'); 
-			script2.type= 'text/javascript'; 
-			script2.innerText = me.insertJS = jsArr.join(';');
-			body.appendChild(script2);
-			script2.parentNode.removeChild(script2);
+		function reload(type){
+			if(type == 'AUDIO' || type == 'ALL'){
+				let script= document.createElement('script');
+				script.type= 'text/javascript'; 
+				script.src= '/release/index.js'; 
+				body.appendChild(script);
+				// 页面不刷新，所以需要手动删除每次添加的节点
+				script.parentNode.removeChild(script);
+			}
+			if(type == 'CODE' || type == 'ALL'){
+				// 插入页面添加的JSCSS组件脚本
+				localData.forEach(function(item, index){
+					if(item.type == 'CODE'){
+						jsArr.push(item.js);
+						cssArr.push(item.css);
+					}
+				})
+				let $insertCSS = $('#insertCSS', iframeDoc);
+				$insertCSS[0].innerText = me.insertCSS = cssArr.join('\n');
+				let script2= document.createElement('script'); 
+				script2.type= 'text/javascript'; 
+				script2.innerText = me.insertJS = jsArr.join(';');
+				body.appendChild(script2);
+				script2.parentNode.removeChild(script2);
+			}
 		}
 		if(isMount){
 			// 修改iphone手机上iframe会撑开父元素的高度bug
 			body.style.height = '549px';
 			body.style.overflow = 'scroll';
-			// 脚本需要在jquery加载完毕后执行
-			$jquery.on('load', function(){
-				reload()
+			// preview环境修改copyright位置
+			$('#J_preview').on('click', function(){
+				setTimeout(function(){
+					if($('#framePage', $(body)).height() > $(body).height()){
+						$('#copyright', $(body)).css('position', 'absolute');
+					}else{
+						$('#copyright', $(body)).css('position', 'fixed');
+					}
+				}, 200);
 			})
+			// 脚本需要在jquery加载完毕后执行
+			if(initType){
+				$jquery.on('load', function(){
+					reload(initType);
+				})
+			}
 		}else{
 			// 增加参数fromType，表明这次是那个组件变化的，确定需不需要执行这部分代码
-			if(localData[0].fromType == 'AUDIO' || localData[0].fromType == 'CODE' || localData[0].fromType == 'ALL'){
-				reload()
+			if(localData[0].fromType == 'AUDIO'){
+				reload('AUDIO');
+			}else if(localData[0].fromType == 'CODE'){
+				reload('CODE');
+			}else if(localData[0].fromType == 'ALL' && initType != ''){
+				reload(initType);
 			}
 		}
 	}
@@ -443,7 +475,7 @@ class Preview extends React.Component {
 								'<link type="text/css" rel="stylesheet" href="/release/index.css" />' + 
 								'<style id="insertCSS" type="text/css"></style>' +
 							'</head>'+ 
-							'<body style="background-color: '+ data.bgColor + '"><div id="framePage"></div>'+
+							'<body class="forPreview"><div id="framePage"></div>'+
 							'<script  id="jquery" type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>' +
 							'</body></html>';
 		return (

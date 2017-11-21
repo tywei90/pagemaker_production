@@ -132,6 +132,7 @@
 }
 
 html {
+    background: #fff;
     overflow-x: hidden;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
@@ -261,7 +262,7 @@ ul {
 }
 
 #copyright{
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     left:0;
     width: 100%;
