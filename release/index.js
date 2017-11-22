@@ -19,7 +19,8 @@ $(function(){
         var music = $(".bgMusic", $curTarget)[0];
         var musicPlay = function(){
             music.play();
-            $musicBtn.addClass("mscRoll");
+            $musicBtn.css('animation-play-state', 'running');
+            $musicBtn.css('-webkit-animation-play-state', 'running');
             $musicPause.css({
                 opacity: 0
             });
@@ -29,7 +30,8 @@ $(function(){
         }
         var musicPause = function(){
             music.pause();
-            $musicBtn.removeClass("mscRoll");
+            $musicBtn.css('animation-play-state', 'paused');
+            $musicBtn.css('-webkit-animation-play-state', 'paused');
             $musicPause.css({
                 opacity: 1
             });

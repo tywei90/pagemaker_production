@@ -42,7 +42,7 @@ class PreTitle extends React.Component {
 		return (
 			!!jsdata.address?
 			<section className={`audio ${jsdata.position}`} style={style}>
-				<a className="mscBtn mscRoll">
+				<a className="mscBtn">
 					<i className="music-pause"></i>
 					<i className="music-play"></i>
 				</a>

@@ -298,17 +298,15 @@ ul {
     bottom: 1rem;
     left: 1rem;
 }
-.mscBtn.mscRoll{
+.mscBtn{
     cursor: pointer;
     height: 100%;
     width: 100%;
     display: block;
-    transform: rotate(360deg);
-    animation: music 8s infinite;
-    animation-timing-function: linear;
-    -webkit-animation-timing-function: linear;
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
+    animation: music 8s linear infinite;
+    -webkit-animation: music 8s linear infinite;
+    animation-play-state: running;
+    -webkit-animation-play-state: running;
 }
 
 .mscBtn i {
@@ -330,7 +328,7 @@ ul {
 .mscBtn i.music-pause {
     background: url(/public/music2.png) no-repeat;
     background-size: 100%;
-    z-index: 2;
+    z-index: 1;
     opacity: 0;
 }
 
