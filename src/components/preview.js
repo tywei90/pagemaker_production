@@ -428,19 +428,26 @@ class Preview extends React.Component {
 				script2.parentNode.removeChild(script2);
 			}
 		}
+		function changePOS(){
+			setTimeout(function(){
+				if($('#framePage', $(body)).height() > $(body).height()){
+					$('#copyright', $(body)).css('position', 'absolute');
+				}else{
+					$('#copyright', $(body)).css('position', 'fixed');
+				}
+			}, 200);
+		}
+		// PC端preview环境修改copyright位置
+		if(screen.width >= 800){
+			changePOS();
+		}
 		if(isMount){
 			// 修改iphone手机上iframe会撑开父元素的高度bug
 			body.style.height = '549px';
 			body.style.overflow = 'scroll';
-			// preview环境修改copyright位置
+			// 移动端preview环境修改copyright位置
 			$('#J_preview').on('click', function(){
-				setTimeout(function(){
-					if($('#framePage', $(body)).height() > $(body).height()){
-						$('#copyright', $(body)).css('position', 'absolute');
-					}else{
-						$('#copyright', $(body)).css('position', 'fixed');
-					}
-				}, 200);
+				changePOS();
 			})
 			// 脚本需要在jquery加载完毕后执行
 			$jquery.on('load', function(){
