@@ -22,7 +22,7 @@ class UnitImage extends React.Component {
         this.state = {
             uploadProps : {
                 name: 'file',
-                action: '/upload',
+                action: '/upload?type=img',
                 accept: 'image/*',
                 headers: {
                     authorization: 'authorization-text',

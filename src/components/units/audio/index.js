@@ -22,7 +22,7 @@ class UnitAudio extends React.Component {
         this.state = {
             uploadProps : {
                 name: 'file',
-                action: '/upload',
+                action: '/upload?type=media',
                 accept: 'audio/mp3,audio/wav',
                 headers: {
                     authorization: 'authorization-text',

@@ -33,7 +33,7 @@ function getTmpFilePath(filename, mimetype) {
 //检测文件类型: img / doc / page / media / unknown
 function getFileType(filename) {
 	var name = filename.toLowerCase();
-	return /\.(?:png|gif|jpg|jpeg|svg)$/.test(name) ? "img" : /\.(?:mp3|mid|mp4|wav)$/.test(name) ? "media" : /\.(?:txt|doc|docx|md)$/.test(name) ? "doc" : /\.(?:js|css|json|html|htm)$/.test(name) ? "page" : "unknown";
+	return /\.(?:png|gif|jpg|jpeg|svg)$/.test(name) ? "img" : /\.(?:mp3|mid|mp4|wav|wma)$/.test(name) ? "media" : /\.(?:txt|doc|docx|md)$/.test(name) ? "doc" : /\.(?:js|css|json|html|htm)$/.test(name) ? "page" : "unknown";
 }
 
 //不同类型文件最大尺寸限制，单位 M
@@ -91,7 +91,6 @@ module.exports = function(req, res) {
 		lossless: req.query.lossless || "", //是否无损压缩png
 		waterMark: req.query.waterMark || "" //是否为图片添加水印
 	};
-
 	//创建上传组件
 	var busboy = new Busboy({
 			headers: req.headers
@@ -106,22 +105,29 @@ module.exports = function(req, res) {
 			maxLen = (maxLenForType[type] || 1),
 			overflow = false;
 		//检测文件名，只允许多媒体类型上传
-		if (type == "unknown" || !filename) {
-			if (filename) {
-				ret[fieldname] = {
-					ok: false,
-					err: 1,
-					des: "错误的文件类型(" + filename.replace(/^.+\./, ".") + ")."
-				};
-			} else {
-				ret[fieldname] = {
-					ok: false,
-					err: 2,
-					des: "nothing here."
-				};
-			}
-			file.resume();
-			return;
+		if(!filename){
+			ret[fieldname] = {
+				ok: false,
+				err: 1,
+				des: "nothing here."
+			};
+			return taskComplete(res, ret);
+		}
+		if(type == "unknown"){
+			ret[fieldname] = {
+				ok: false,
+				err: 2,
+				des: "不支持的文件类型(" + filename.replace(/^.+\./, ".") + ")."
+			};
+			return taskComplete(res, ret);
+		}
+		if(type != req.query.type){
+			ret[fieldname] = {
+				ok: false,
+				err: 3,
+				des: "错误的文件类型(" + filename.replace(/^.+\./, ".") + ")."
+			};
+			return taskComplete(res, ret);
 		}
 		//文件传输中
 		file.on('data', function(data) {
