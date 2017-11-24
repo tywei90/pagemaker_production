@@ -90,9 +90,11 @@ class App extends React.Component {
             $('.m-preview').css('transform', `scale(${ratio})`);
         }
         setPreviewSize();
-        $(window).on('resize', function(){
-            setPreviewSize();
-        });
+        if(window.innerWidth > 800){
+            $(window).on('resize', function(){
+                setPreviewSize();
+            });
+        }
         // 侧边栏背景自适应
         if((screen.width < 800) && ($('.m-units-list').height() > $('.m-units-list ul').height() + 200)){
             $('.m-units-list ul').css('height', '100%');
