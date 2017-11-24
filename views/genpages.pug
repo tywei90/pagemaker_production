@@ -12,15 +12,17 @@ include ./common/docHead
 	debugJS: false,
 	debugCSS_IP: '',
 	cssFile: [
+		'https://cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-loading-bar.min.css',
 		'https://pagemaker.wty90.com/public/main.css', 
 		'https://cdn.bootcss.com/antd/2.5.2/antd.min.css', 
 		'https://cdn.bootcss.com/codemirror/5.28.0/codemirror.min.css',
-		'https://cdn.bootcss.com/codemirror/5.28.0/theme/monokai.min.css'
+		'https://cdn.bootcss.com/codemirror/5.28.0/theme/monokai.min.css',
 	]
 })
 body
 	#app
 	+jsFile([
+		'https://cdn.bootcss.com/pace/1.0.2/pace.min.js',
 		'https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js',
 		'https://cdn.bootcss.com/react/15.3.1/react.min.js',
 		'https://cdn.bootcss.com/react-dom/15.3.1/react-dom.min.js',
