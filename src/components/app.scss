@@ -27,3 +27,10 @@
 		box-sizing: content-box;
 	}
 }
+.ant-modal-content>.ant-modal-body .ant-confirm-content {
+    margin-left: 5px;
+    margin-top: 20px;
+    p {
+        word-wrap: break-word;
+    }
+}
