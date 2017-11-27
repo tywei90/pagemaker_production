@@ -95,6 +95,9 @@ function reducer(state = initialState, action) {
     if (state === initialState) {
         localData = localStorage.getItem('config');
         !!localData && (state = immutable.fromJS(JSON.parse(localData)));
+        // sessionStorage的初始化
+        sessionStorage.setItem('configs', JSON.stringify([]));
+        sessionStorage.setItem('index', 0);
     }
     switch (action.type) {
         case 'AddUnit': {
@@ -142,9 +145,28 @@ function reducer(state = initialState, action) {
         default:
             newState = state;
     }
-    // console.log(newState.toJS());
     // 更新localstorage，便于恢复现场
     localStorage.setItem('config', JSON.stringify(newState.toJS()));
+
+    // 撤销，恢复操作(仅以组件数量变化为触发点，否则存储数据巨大，也没必要)
+    let index = parseInt(sessionStorage.getItem('index'));
+    let configs = JSON.parse(sessionStorage.getItem('configs'));
+    if(action.type == 'Insert' && action.index){
+        sessionStorage.setItem('index', index + action.index);
+    }else{
+        if(newState.toJS().length != state.toJS().length){
+            // 组件的数量有变化，删除历史记录index指针状态之后的所有configs，将这次变化的config作为最新的记录
+            configs.splice(index + 1, configs.length - index - 1, JSON.stringify(newState.toJS()));
+            sessionStorage.setItem('configs', JSON.stringify(configs));
+            sessionStorage.setItem('index', configs.length - 1);
+        }else{
+            // 组件数量没有变化，index不变。但是要更新存储的config配置
+            configs.splice(index, 1, JSON.stringify(newState.toJS()));
+            sessionStorage.setItem('configs', JSON.stringify(configs));
+        }
+    }
+    
+    // console.log(JSON.parse(sessionStorage.getItem('configs')));
     return newState
 }
 

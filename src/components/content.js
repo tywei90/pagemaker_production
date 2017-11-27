@@ -20,6 +20,7 @@ import UnitAudio from './units/audio/index'
 import UnitCode from './units/code/index'
 
 import Preview from './preview.js'
+import $ from 'jquery'
 
 import 'whatwg-fetch'
 
@@ -54,7 +55,9 @@ class Content extends React.Component {
         this.state = {
             errTip: '',
             visible: false,
-            confirmLoading: false
+            confirmLoading: false,
+            pageX: null,
+            pageY: null
         }
     }
     clearSettings(){
@@ -164,6 +167,81 @@ class Content extends React.Component {
         })
         .catch(e => console.log("Oops, error", e))
     }
+     handleTouchStart(e) {
+        this.scale = 1.5;
+        this.$panel = $('#J_preview');
+        this.$panel.css('transform', `scale(${this.scale})`);
+        this.$panel.css('-webkit-transform', `scale(${this.scale})`);
+        this.panelRight = parseInt(this.$panel.css('right'), 10);
+        this.panelBottom = parseInt(this.$panel.css('bottom'), 10);
+        this.setState({pageX: e.pageX, pageY: e.pageY});
+    }
+    handleTouchMove(e) {
+        const panelW = parseInt(this.$panel.css('width'), 10);
+        const panelH = parseInt(this.$panel.css('height'), 10);
+        const minW = panelW*(this.scale - 1)*0.5;
+        const maxW = window.innerWidth - panelW*(this.scale + 1)*0.5;
+        const minH = panelH*(this.scale - 1)*0.5;
+        const maxH = window.innerHeight - panelH*(this.scale + 1)*0.5;
+        const {pageX, pageY} = this.state;
+        e.preventDefault();
+        e = e.touches[0];
+        const moveEvent = {
+            moveX: e.pageX - pageX,
+            moveY: e.pageY - pageY
+        };
+        this.panelRight = this.panelRight - moveEvent.moveX;
+        this.panelBottom = this.panelBottom - moveEvent.moveY;
+        // 边界判断
+        if(this.panelRight <= minW){
+            this.panelRight = minW;
+        }
+        if(this.panelRight >= maxW){
+            this.panelRight = maxW;
+        }
+        if(this.panelBottom <= minH){
+            this.panelBottom = minH;
+        }
+        if(this.panelBottom >= maxH){
+            this.panelBottom = maxH;
+        }
+        this.$panel.css('right', this.panelRight);
+        this.$panel.css('bottom', this.panelBottom);
+        this.setState({pageX: e.pageX, pageY: e.pageY});
+    }
+    handleTouchEnd(e) {
+        e.preventDefault();
+        this.$panel.css('transform', 'scale(1)');
+        this.$panel.css('-webkit-transform', 'scale(1)');
+    }
+    goPrev(e){
+        if(!this.$prev.hasClass('active')) return
+        let configs = JSON.parse(sessionStorage.getItem('configs'));
+        let index = parseInt(sessionStorage.getItem('index'));
+        unitAction.insert(JSON.parse(configs[index - 1]), -1);
+    }
+    goNext(e){
+        if(!this.$next.hasClass('active')) return
+        let configs = JSON.parse(sessionStorage.getItem('configs'));
+        let index = parseInt(sessionStorage.getItem('index'));
+        unitAction.insert(JSON.parse(configs[index + 1]), 1);
+    }
+    componentWillUpdate(){
+        this.$prev = $('.J_prev');
+        this.$next = $('.J_next');
+        let configs = JSON.parse(sessionStorage.getItem('configs'));
+        let index = parseInt(sessionStorage.getItem('index'));
+        if(index > 0){
+            this.$prev.addClass('active');
+        }else{
+            this.$prev.removeClass('active');
+        }
+        if(index < configs.length - 1){
+            this.$next.addClass('active');
+        }else{
+            this.$next.removeClass('active');
+        }
+    }
     render() {
         const { unit } = this.props;
         const { errTip, visible, confirmLoading } = this.state;
@@ -181,6 +259,13 @@ class Content extends React.Component {
         // }
         return (
             <section className="m-content f-fl">
+                <em id="J_preview"
+                    onTouchStart={(e) => this.handleTouchStart(e.touches[0])}
+                    onTouchMove={(e) => this.handleTouchMove(e)}
+                    onTouchEnd={(e) => this.handleTouchEnd(e)}
+                >
+                    <i className="icon iconfont icon-yulan"></i>
+                </em>
                 <Modal title="导入配置"
                     wrapClassName="upload-dialog"
                     visible={visible}
@@ -212,7 +297,8 @@ class Content extends React.Component {
                     <span className="J_insert" onClick={() => this.setState({visible: true})}>导入</span>|
                     <span className="J_output" onClick={this.download}>导出</span>|
                     <span className="J_clear" onClick={this.clearSettings}>清空</span>)
-                    <em id="J_preview">预览<i className="icon iconfont icon-yulan"></i></em>
+                    <i className="icon iconfont icon-iconfonthoutui J_prev" onClick={this.goPrev.bind(this)}></i>
+                    <i className="icon iconfont icon-iconfontqianjin J_next" onClick={this.goNext.bind(this)}></i>
                 </div>
                 <ul id="unitMain">
                     {renderUnits(unit)}

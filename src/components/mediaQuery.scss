@@ -16,14 +16,19 @@
                 padding: 0 10px;
             }
             .goHome {
-                font-size: 20px;
-                padding: 0 10px;
-                margin-left: 50px;
-            }
-            .links {
-                display: none;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -80px;
+                padding-left: 0;
+                font-size: 16px;
+                i{
+                    font-size: 20px;
+                }
             }
             .user {
+                line-height: 44px;
+                font-size: 12px;
                 padding-right: 20px;
                 a:hover {
                     color: inherit;
@@ -84,7 +89,25 @@
                 width: 100%;
                 margin: 0;
                 #J_preview {
-                    display: inline-block;
+                    user-select: none;
+                    transition: transform 0.4s;
+                    -webkit-transition: -webkit-transform  0.4s;
+                    touch-action: none;
+                    z-index: 10;
+                    position: fixed;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    background: #ffdfb4;
+                    bottom: 80px;
+                    right: 35px;
+                    border-radius: 50%;
+                    i{
+                        color: #337ab7;
+                        font-size: 20px;
+                    }
                 }
             }
             @keyframes zoomInDown {
