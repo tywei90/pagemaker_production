@@ -226,9 +226,11 @@ class Content extends React.Component {
         let index = parseInt(sessionStorage.getItem('index'));
         unitAction.insert(JSON.parse(configs[index + 1]), 1);
     }
-    componentWillUpdate(){
+    componentDidMount(){
         this.$prev = $('.J_prev');
         this.$next = $('.J_next');
+    }
+    componentWillUpdate(){
         let configs = JSON.parse(sessionStorage.getItem('configs'));
         let index = parseInt(sessionStorage.getItem('index'));
         if(index > 0){
