@@ -14,27 +14,19 @@ header{
 		display: none;
 	}
 	.goHome{
-		font-size: 30px;
+		font-size: 20px;
 		padding-left: 100px;
 		color: #fff;
+		i{
+			font-size: 24px;
+			margin-right: 10px;
+		}
 		&:hover{
 			color: #a9da95;
 		}
 	}
-	.links{
-		padding-left: 30px;
-		a{
-			display: inline-block;
-			width: 120px;
-			color: #999;
-			cursor: pointer;
-		}
-		.active{
-			color: #fff;
-			background: #000;
-		}
-	}
 	.user{
+		font-size: 15px;
 		padding-right: 100px;
 		a{
 			color: #fff;

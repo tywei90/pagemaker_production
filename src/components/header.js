@@ -38,18 +38,8 @@ class Header extends React.Component {
         return (
             <header className="f-cb">
                 <i className="aside-unitList icon iconfont icon-zhankai" id="J_aside"></i>
-                <a href="/" className="goHome icon iconfont icon-fire f-fl"></a>
-                <div className="links f-fl">
-                    <a className="active" href="/">pagemaker</a>
-                    <a href="/email">直邮工具</a>
-                    <a href="/h5">动效页</a>
-                </div>
-                <div className="user f-fr">
-                    {screen.width > 800?
-                        <a href="/users">您好，{username}</a> :  
-                        <a>您好，{username}</a>
-                    }
-                </div>
+                <a href="/" className="goHome f-fl"><i className="icon iconfont icon-fire"></i><span>Pagemaker</span></a>
+                <div className="user f-fr"><a>您好，{username}</a></div>
             </header>
         );
     }
