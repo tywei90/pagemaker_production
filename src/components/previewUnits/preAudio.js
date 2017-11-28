@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import immutable from 'immutable';
 
 @pureRender
-class PreTitle extends React.Component {
+class PreAudio extends React.Component {
 	static propTypes = {
         data: ImmutablePropTypes.map,
         id: PropTypes.number
@@ -52,4 +52,4 @@ class PreTitle extends React.Component {
 		)
 	}
 }
-export default PreTitle;
+export default PreAudio;
