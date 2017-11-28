@@ -45,7 +45,7 @@ class App extends React.Component {
         //检测文件类型: img / audio / video 
         function getFileType(filename) {
             var name = filename.toLowerCase();
-            return /\.(?:png|gif|jpg|jpeg|svg)$/.test(name) ? "img" : /\.(?:mp3|ogg|wav)$/.test(name) ? "audio" : /\.(?:ogg|mp4|webm)$/.test(name) ? "video" : 'unknown';
+            return /\.(?:png|gif|jpg|jpeg|svg)$/.test(name) ? "img" : /\.(?:mp3|mid|wav|wma)$/.test(name) ? "audio" : /\.(?:mp4|ogg|3gp)$/.test(name) ? "video" : 'unknown';
         }
         let localData = localStorage.getItem('config');
         if(!!localData){
@@ -67,7 +67,24 @@ class App extends React.Component {
                         };
                         domType.src = address;
                     }else{
-                        reject(new Error(address));
+                        if(address.indexOf('http') != -1){
+                            // 因为上传做了类型限制，所以这里的unknown可能是一些线上视频地址
+                            console.log('如下文件类型为unknown或者采用的线上地址\n' + address);
+                        }else{
+                            Modal.confirm({
+                                title: '温馨提示',
+                                content: 
+                                <div>
+                                    <p>文件地址错误，您可以选择返回重新上传如下文件：</p>
+                                    <p>{address}</p>
+                                    <p>或者，如果不需要存储配置可直接选择清空配置。</p>
+                                </div>,
+                                onOk() {unitAction.clear();},
+                                onCancel() {},
+                                okText:"清空",
+                                cancelText:"返回"
+                            });
+                        }
                     }
                 });
             });
