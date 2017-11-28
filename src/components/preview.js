@@ -11,6 +11,7 @@ import PreImg from './previewUnits/preImg';
 import PreTextBody from './previewUnits/preTextBody';
 import PreButton from './previewUnits/preButton';
 import PreAudio from './previewUnits/preAudio';
+import PreVideo from './previewUnits/preVideo';
 import PreCode from './previewUnits/preCode';
 
 import $ from 'jquery'
@@ -46,6 +47,11 @@ const renderUnits = units => {
 			case 'AUDIO' :
 				return (
 					<PreAudio key={index} id={index} data={item} />
+				)
+			break;
+			case 'VIDEO' :
+				return (
+					<PreVideo key={index} id={index} data={item} />
 				)
 			break;
 			case 'CODE' :

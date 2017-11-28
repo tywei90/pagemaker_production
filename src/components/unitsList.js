@@ -55,8 +55,8 @@ class UnitsList extends React.Component {
                     <li onClick={this.handleClick.bind(this, 'BUTTON')}><i className="iconfont icon-anniu"></i>按钮</li>
                     <li onClick={this.handleClick.bind(this, 'TEXTBODY')}><i className="iconfont icon-zhengwen"></i>正文</li>
                     <li onClick={this.handleClick.bind(this, 'AUDIO')}><i className="iconfont icon-yinpin"></i>音频</li>
+                    <li onClick={this.handleClick.bind(this, 'VIDEO')}><i className="iconfont icon-x-rmvb"></i>视频</li>
                     <li onClick={this.handleClick.bind(this, 'CODE')}><i className="iconfont icon-daima"></i>jscss</li>
-                    <li onClick={this.info}><i className="iconfont icon-x-rmvb"></i>视频</li>
                     <li onClick={this.info}><i className="iconfont icon-tongji"></i>统计</li>
                 </ul>
             </section>

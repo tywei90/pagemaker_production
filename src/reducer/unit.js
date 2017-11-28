@@ -68,6 +68,14 @@ const unitsConfig = immutable.fromJS({
         loop: true,
         auto: true
     },
+    VIDEO: {
+        type: 'VIDEO',
+        name: '视频',
+        address: '',
+        loop: true,
+        auto: true,
+        padding: [0, 20, 30, 20]
+    },
     CODE: {
         type: 'CODE',
         name: 'JSCSS',
