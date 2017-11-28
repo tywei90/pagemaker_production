@@ -210,7 +210,6 @@ class Content extends React.Component {
         this.setState({pageX: e.pageX, pageY: e.pageY});
     }
     handleTouchEnd(e) {
-        e.preventDefault();
         this.$panel.css('transform', 'scale(1)');
         this.$panel.css('-webkit-transform', 'scale(1)');
     }
