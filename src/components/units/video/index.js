@@ -22,7 +22,7 @@ class UnitVideo extends React.Component {
             uploadProps : {
                 name: 'file',
                 action: '/upload?type=video',
-                accept: 'video/mp4',
+                accept: 'audio/mp4',
                 headers: {
                     authorization: 'authorization-text',
                 },

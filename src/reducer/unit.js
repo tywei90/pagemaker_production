@@ -74,7 +74,7 @@ const unitsConfig = immutable.fromJS({
         address: '',
         loop: true,
         auto: true,
-        padding: [0, 20, 30, 20]
+        padding: [0, 0, 20, 0]
     },
     CODE: {
         type: 'CODE',
