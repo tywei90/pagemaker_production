@@ -1,14 +1,14 @@
 /**
  * ajax文件上传service
- * action地址: /open/upload
+ * action地址: /files/upload
  */
 var Busboy = require('busboy');
 var fs = require("fs");
 var path = require("path");
 var dir = require("./dir");
 var Imagemin = require("imagemin");
-var pngquant = require("./pngquant");
-var MD5 = require('md5');
+var ImageminJpegtran = require('imagemin-jpegtran');
+var ImageminPngquant = require('imagemin-pngquant');
 
 //获取临时文件目录
 function getTmpFilePath(filename, mimetype) {
@@ -33,63 +33,37 @@ function getTmpFilePath(filename, mimetype) {
 //检测文件类型: img / doc / page / media / unknown
 function getFileType(filename) {
 	var name = filename.toLowerCase();
-	return /\.(?:png|gif|jpg|jpeg|svg)$/.test(name) ? "img" : /\.(?:mp3|mid|mp4|wav|wma)$/.test(name) ? "media" : /\.(?:txt|doc|docx|md)$/.test(name) ? "doc" : /\.(?:js|css|json|html|htm)$/.test(name) ? "page" : "unknown";
+	return /\.(?:png|gif|jpg|jpeg|svg)$/.test(name) ? "img" : /\.(?:mp3|mid|wav|wma)$/.test(name) ? "audio" : /\.(?:mp4|ogg|3gp)$/.test(name) ? "video" : /\.(?:txt|doc|docx|md)$/.test(name) ? "doc" : /\.(?:js|css|json|html|htm)$/.test(name) ? "page" : "unknown";
 }
 
 //不同类型文件最大尺寸限制，单位 M
 var maxLenForType = {
 	img: 5,
-	media: 10,
+	audio: 10,
+	video: 20,
 	doc: 3,
 	page: 1
 };
 
 //自动压缩图片
-function minImage(fileInfo, callback, lossless) {
-	var min, filename = fileInfo.filename.toLowerCase();
-	if (/\.(?:jpg|jpeg)$/.test(filename)) {
-		min = new Imagemin()
-			.src(fileInfo.filePath)
-			.use(Imagemin.jpegtran({
-				progressive: lossless == "1"
-			}))
-			.dest(fileInfo.fileFld);
-	} else if (/\.png$/.test(filename)) {
-		//如果不支持pngquant，则改为无损压缩
-		if (!pngquant.support) {
-			lossless = "1";
-		}
-		min = new Imagemin()
-			.src(fileInfo.filePath)
-			.dest(fileInfo.fileFld);
-		if (lossless == "1") {
-			// 无损png压缩
-			min.use(Imagemin.optipng({
-				optimizationLevel: 1
-			}));
-		} else {
-			//有损png压缩
-			min.use(pngquant());
-		}
-	}
-	if (min) {
-		min.run(function(err) {
-			callback(err ? 0 : 1, fileInfo);
-		});
-	} else {
-		callback(1, fileInfo);
-	}
+function minImage(fileInfo, callback) {
+	Imagemin([fileInfo.filePath], fileInfo.fileFld, {
+		plugins: [
+			ImageminJpegtran(),
+			ImageminPngquant({quality: '65-80'})
+		]
+	}).then(files => {
+		console.log(files);
+	}).catch(function(err){
+		callback(err ? 0 : 1, fileInfo);
+	});
 }
 
 module.exports = function(req, res) {
 	//解析get参数，控制上传处理过程
 	var ctrl = {
 		callback: req.query.callback || "", //如果传递了callback，则启动 jsonp 格式
-		//控制上限 ~n    控制下限 n~   控制范围  m~n   精确控制 n
-		picSize: req.query.picSize || "", //如果是图片类型，则控制图片的长宽限制，比如  ~100,200~300
-		minify: req.query.minify || "1", //图片是否自动压缩
-		lossless: req.query.lossless || "", //是否无损压缩png
-		waterMark: req.query.waterMark || "" //是否为图片添加水印
+		type: req.query.type // 上传文件类型
 	};
 	//创建上传组件
 	var busboy = new Busboy({
@@ -104,6 +78,9 @@ module.exports = function(req, res) {
 			type = getFileType(filename),
 			maxLen = (maxLenForType[type] || 1),
 			overflow = false;
+		if(type === 'img'){
+			ctrl.minify = req.query.minify || "1"; //图片是否压缩，默认压缩
+		}
 		//检测文件名，只允许多媒体类型上传
 		if(!filename){
 			ret[fieldname] = {
@@ -121,7 +98,7 @@ module.exports = function(req, res) {
 			};
 			return taskComplete(res, ret);
 		}
-		if(type != req.query.type){
+		if(type != ctrl.type){
 			ret[fieldname] = {
 				ok: false,
 				err: 3,
@@ -134,7 +111,6 @@ module.exports = function(req, res) {
 			uploadLen += data.length;
 			if (uploadLen > maxLen * 1024 * 1024) {
 				overflow = true;
-				file.resume();
 			}
 		});
 		//文件传输完成
@@ -147,23 +123,22 @@ module.exports = function(req, res) {
 				//填入缓存
 				ret[fieldname] = {
 					ok: false,
-					err: 3,
-					des: "file is bigger than " + limit + "."
+					err: 4,
+					des: "文件大小超过上限" + maxLen + "M"
 				};
-				return;
-			}
-			//保存结果
-			ret[fieldname] = {
-				ok: true,
-				url: tmpFile.url,
-				size: uploadLen / 1024 //文件长度
-			};
-			//待压缩图片
-			if (type === "img") {
-				minFiles.push(tmpFile);
+			}else{
+				//保存结果
+				ret[fieldname] = {
+					ok: true,
+					url: tmpFile.url,
+					size: uploadLen / 1024 //文件长度
+				};
+				//待压缩图片
+				if (type === "img") {
+					minFiles.push(tmpFile);
+				}
 			}
 		});
-
 		file.pipe(fs.createWriteStream(tmpFile.filePath));
 	});
 
@@ -171,7 +146,7 @@ module.exports = function(req, res) {
 	busboy.on('finish', function() {
 		// console.log("busboy finish!!")
 		// 读取到的json返回到客户端
-		if(ret['file'].url.indexOf('json') != -1){
+		if(ret['file'].url && ret['file'].url.indexOf('json') != -1){
 			fs.readFile(path.join('./', ret['file'].url), 'utf8', function (err, data) {
 		        if(err) console.log(err);
 				try{
@@ -180,7 +155,7 @@ module.exports = function(req, res) {
                 catch(err){
                     ret['file'] = {
                         ok: false,
-                        err: 1,
+                        err: 5,
                         des: "json文件格式错误"
                     }
                     return taskComplete(res, ret);
@@ -191,7 +166,7 @@ module.exports = function(req, res) {
                 }else{
                     ret['file'] = {
                         ok: false,
-                        err: 2,
+                        err: 6,
                         des: "非有效的pagemaker配置文件"
                     }
                 }
@@ -209,27 +184,22 @@ module.exports = function(req, res) {
 				m = 0,
 				deal = function(ok, info) {
 					m++;
-					// console.log("minify image over:", m, " total is ",n)
 					if (m == n) {
-						// console.log("taskComplete:", ret)
 						taskComplete(res, ret);
 					}
 				},
 				info;
 			for (i = 0; i < n; i++) {
 				info = minFiles[i];
-				// console.log("minify image:", i);
 				try {
-					minImage(info, deal, ctrl.lossless);
+					minImage(info, deal);
 				} catch (e) {
-					// console.log("minImage error >>>>", info)
+					console.log("minImage error >>>>", e);
 				}
 			}
-			taskComplete(res, ret);
-		} else {
-			// console.log("do not minify image")
-			taskComplete(res, ret);
+			return
 		}
+		return taskComplete(res, ret);
 	});
 
 	//接管request对象
