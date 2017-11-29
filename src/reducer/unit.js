@@ -81,6 +81,11 @@ const unitsConfig = immutable.fromJS({
         name: 'JSCSS',
         js: '',
         css: ''
+    },
+    STATISTIC: {
+        type: 'STATISTIC',
+        name: '统计',
+        id: ''
     }
 })
 

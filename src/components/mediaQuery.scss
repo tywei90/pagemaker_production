@@ -241,18 +241,30 @@
                 }
                 .unit-code {
                     .show-detail {
-                        height: 400px;
+                        height: 500px;
                     }
                     .content {
-                        >ul>li> {
-                            label {
+                        >ul>li{
+                            font-size: 12px;
+                            >label {
                                 width: 60px;
+                                font-size: 12px;
+                                line-height: 20px;
                             }
-                            ul {
+                            >ul {
+                                line-height: 20px;
                                 width: calc(100% - 80px);
                                 .CodeMirror {
                                     height: 150px;
                                 }
+                            }
+                            &:nth-child(1),&:nth-child(2){
+                                ul{
+                                    line-height: 18px;
+                                }
+                            }
+                            &:nth-child(2){
+                                margin-top: 10px;
                             }
                         }
                         button {

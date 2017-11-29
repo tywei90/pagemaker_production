@@ -19,6 +19,7 @@ import UnitTextBody from './units/textbody/index'
 import UnitAudio from './units/audio/index'
 import UnitVideo from './units/video/index'
 import UnitCode from './units/code/index'
+import UnitStatistic from './units/statistic/index'
 
 import Preview from './preview.js'
 import $ from 'jquery'
@@ -44,6 +45,8 @@ const renderUnits = units => {
                 return <li key={index} id={index}><UnitVideo id={index} data={item} /></li>
             case 'CODE' :
                 return <li key={index} id={index}><UnitCode id={index} data={item} /></li>
+            case 'STATISTIC' :
+                return <li key={index} id={index}><UnitStatistic id={index} data={item} /></li>
         }
     });
 };

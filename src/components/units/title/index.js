@@ -3,7 +3,6 @@ import autoBind from 'autobind-decorator';
 import pureRender from 'pure-render-decorator';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import immutable from 'immutable';
-import { Modal } from 'antd';
 
 import './index.scss';
 

@@ -13,6 +13,7 @@ import PreButton from './previewUnits/preButton';
 import PreAudio from './previewUnits/preAudio';
 import PreVideo from './previewUnits/preVideo';
 import PreCode from './previewUnits/preCode';
+import PreStatistic from './previewUnits/PreStatistic';
 
 import $ from 'jquery'
 
@@ -57,6 +58,11 @@ const renderUnits = units => {
 			case 'CODE' :
 				return (
 					<PreCode key={index} id={index} data={item} />
+				)
+			break;
+			case 'STATISTIC' :
+				return (
+					<PreStatistic key={index} id={index} data={item} />
 				)
 			break;
 		}
@@ -346,6 +352,26 @@ class Preview extends React.Component {
 		let iframe = document.getElementsByTagName('iframe')[0];
 		let iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 		let bodyContext = iframeDoc.getElementById("framePage").outerHTML;
+		let ids = [];
+		let scriptIds = [];
+		for(let i=0, len=localData.length; i<len; i++){
+			if(localData[i].type = 'STATISTIC' && localData[i].id){
+				ids.push(localData[i].id);
+			}
+		}
+		for(let i=0, len=ids.length; i<len; i++){
+			scriptIds.push(
+				'<script>'+
+					'var _hmt = _hmt || [];'+
+					'(function() {'+
+						'var hm = document.createElement("script");'+
+						'hm.src = "https://hm.baidu.com/hm.js?'+ ids[i] + '";'+
+						'var s = document.getElementsByTagName("script")[0]; '+
+						's.parentNode.insertBefore(hm, s);'+
+					'})();'+
+				'</script>'
+			)
+		}
 		let htmlContext = 
 			'<!DOCTYPE html>' + 
 			'<html>' + 
@@ -357,22 +383,7 @@ class Preview extends React.Component {
 					'<meta name="description" content=' + data.desc + '>'+ 
 					'<link type="text/css" rel="stylesheet" href="/release/index.css" />' + 
 					'<style id="insertCSS" type="text/css">' + me.insertCSS + '</style>' + 
-					'<script>'+
-						'var _hmt = _hmt || [];'+
-						'(function() {'+
-							'var hm = document.createElement("script");'+
-							'hm.src = "https://hm.baidu.com/hm.js?dd6484741f3715e3bb10b2c134341631";'+
-							'var s = document.getElementsByTagName("script")[0]; '+
-							's.parentNode.insertBefore(hm, s);'+
-						'})();'+
-					'</script>'+
-					'<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109240313-1"></script>'+
-					'<script>'+
-						'window.dataLayer = window.dataLayer || [];'+
-						'function gtag(){dataLayer.push(arguments);}'+
-						"gtag('js', new Date());"+
-						"gtag('config', 'UA-109240313-1');"+
-					'</script>'+
+					scriptIds.join('') +
 				'</head>'+ 
 				'<body>' + 
 					bodyContext + 
