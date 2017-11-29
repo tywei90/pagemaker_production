@@ -28,6 +28,8 @@ class UnitCode extends React.Component {
         return (
             <UnitPanel id={id} type={data.get('type').toLowerCase()} unitName={data.get('name')}>
                 <ul>
+                    <li className="f-cb"><label className="f-fl">警告：</label><ul className="f-fr">非前端程序员勿动！！脚本会在插入的位置立即执行。由于执行环境不同，部分js代码在预览状态下可能无效。</ul></li>
+                    <li className="f-cb"><label className="f-fl">提示：</label><ul className="f-fr">已经载入jquery代码库</ul></li>
                     <li className="f-cb">
                         <label className="f-fl">样式(CSS)</label>
                         <ul ref="cssdiv" className="css-input f-fr"></ul>
