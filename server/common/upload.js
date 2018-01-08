@@ -53,9 +53,9 @@ function minImage(fileInfo, callback) {
 			ImageminPngquant({quality: '65-80'})
 		]
 	}).then(files => {
-		console.log(files);
+		callback(1, fileInfo);
 	}).catch(function(err){
-		callback(err ? 0 : 1, fileInfo);
+		callback(0, fileInfo);
 	});
 }
 
