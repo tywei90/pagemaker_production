@@ -1,6 +1,6 @@
-# 简单前端页面制作工具pagemaker
+## 简单前端页面制作工具pagemaker
 
-技术分析，详见我的[博客](https://www.wty90.com/2018/01/11/pagemaker/)
+## 技术分析，详见我的[博客](https://www.wty90.com/2018/01/11/pagemaker/)
 
 进入项目目录
 ```bash
