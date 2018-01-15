@@ -1,37 +1,30 @@
 # 简单前端页面制作工具pagemaker
----
-> pagemaker线上版本
 
-前端: 基于React + Webpack + ES6技术
-后端: node.js + express技术
+技术分析，详见我的[博客](https://www.wty90.com/2018/01/11/pagemaker/)
 
 进入项目目录
-```
-cd pagemake
+```bash
+cd pagemaker_production
 ```
 安装依赖
-```
+```bash
 npm install
 ```
-如果需要启动node热刷新功能，需要全局安装supervisor
-```
-npm -g install supervisor
+如果需要启动node热刷新功能，需要全局安装nodemon
+```bash
+npm install -g nodemon
 ```
 运行以下命令
-```
+```bash
 npm run server //启动服务器，实时监测后台代码并更新(需要手动刷新页面)
 npm run dev //动态监测jsx和.scss文件, 并更新内存里(8080端口)的打包文件，自动刷新页面
-//根据需要运行
-npm run build //编译文件到build目录下，打包到磁盘里，对应3000端口
+npm run build //编译文件到build目录下，打包到磁盘里，对应4000端口
 ```
-打开浏览器输入http://localhost:3000/genpages
+打开浏览器输入http://localhost:4000
 
+**注意**
+1、线上项目的server端采用pm2管理，在开发环境推荐[nodemon](https://github.com/remy/nodemon/)，需要全局安装。不推荐supervisor，代码错误会一直报错，而且不能选择监控目录。本地调试后台，需要修改package.json里的scripts.server属性为`nodemon --watch server server/pagemaker`。
 
-## 参考文献
+2、我们的html模板采用[pug](https://pugjs.org/api/getting-started.html)，首页的模板在views文件夹下的genpages.pug文件。`https://pagemaker.wty90.com/public/main.js`为线上的js地址，如果是本地调试pc页面，改成`http://127.0.0.1:8080/public/main.js`，css文件一样。如果是调试手机页面或者其他电脑上，改成`http://your_ip_address:4000/public/main.js`。当然，需要先打包修改的代码。
 
-0. [Immutable 详解及 React 中实践](https://zhuanlan.zhihu.com/p/20295971?columnSlug=purerender)
-0. [React.createClass和extends Component的区别](https://segmentfault.com/a/1190000005863630)
-0. [React 技术栈系列教程](http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html)
-0. [入门Webpack，看这篇就够了](http://www.jianshu.com/p/42e11515c10f#)
-0. [ECMAScript 6入门](http://es6.ruanyifeng.com/)
-0. [Immutable.js API](https://github.com/facebook/immutable-js#immutable-collections-for-javascript)
+3、genpages.pug里有一些配置可以选，`debugJS`参数是开启在移动端调试js的工具。`debugCSS_IP`参数是开启在移动端调试css的工具，需要传入电脑的ip地址，不传不开启。`showProgressBar`参数是否显示loading进度条。
