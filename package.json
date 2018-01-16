@@ -1,8 +1,8 @@
 {
-  "name": "pagemake",
-  "version": "0.0.1",
+  "name": "pagemaker",
+  "version": "1.0.0",
   "private": true,
-  "description": "立马理财页面制作工具项目",
+  "description": "前端页面制作工具",
   "scripts": {
     "dev": "cross-env NODE_ENV=development && webpack-dev-server --devtool --progress",
     "server": "pm2 start ./server/pagemaker",
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": ".."
+    "url": "https://github.com/tywei90/pagemaker_production"
   },
-  "author": "luckykun",
+  "author": "tywei",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.4.0",
