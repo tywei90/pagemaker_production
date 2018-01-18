@@ -1,6 +1,6 @@
-# 前端页面制作工具[pagemaker](https://pagemaker.wty90.com)
+# 前端页面制作工具pagemaker
 
-技术分析，详见我的[博客](https://www.wty90.com/2018/01/11/pagemaker/)
+> 技术分析，详见我的[博客](https://www.wty90.com/2018/01/11/pagemaker/)
 
 ## 一、工程目录分析
 * data是用来存放数据文件的。因为数据比较简单，本项目没有采用数据库，直接用文件方式来存储。
