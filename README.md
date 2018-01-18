@@ -2,6 +2,17 @@
 
 技术分析，详见我的[博客](https://www.wty90.com/2018/01/11/pagemaker/)
 
+## 一、工程目录分析
+* data是用来存放数据文件的。因为数据比较简单，本项目没有采用数据库，直接用文件方式来存储。
+* files是存放上传文件和下载的中间文件。
+* public是最后打包生成文件的目录
+* release目录是用来存放发布的静态页面目录
+* server是服务的代码
+* src是整个前端工程目录。action和reducer存放在各自文件夹内，index.js是入口文件。fonts文件夹存放字体文件的，采用[阿里字体库](iconfont.cn)。
+* views存放前端pug模板文件的
+* .babelrc文件是用来配置比如支持es6，es7等最新特性的，react, antd按需加载等。  
+
+## 二、项目运行
 进入项目目录
 ```bash
 cd pagemaker_production
