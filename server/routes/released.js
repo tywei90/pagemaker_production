@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var arrSort = require('arr-sort');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	let filepath = './data/';
+    let tmpArr = [];
     let existDirname = [];
     fs.readdir(filepath, function(err, files) {
         if (err) {
@@ -12,10 +15,22 @@ router.get('/', function(req, res, next) {
         files.forEach(function(file) {
             let stats = fs.statSync(filepath + file);
             if(stats.isDirectory() && /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(file)){
-                existDirname.push(file);
+                tmpArr.push({
+                	name: file,
+                	date: +stats.birthtime || +new Date()
+                });
             }
         });
-        // console.log(existDirname);
+        // 按照发布日期倒序排
+        tmpArr = arrSort(tmpArr,
+            [{
+                attr: 'date',
+                asc: false
+            }]
+        );
+        for(var i=0, len=tmpArr.length; i<len; i++){
+        	existDirname.push(tmpArr[i].name);
+        }
         if(existDirname.length > 0){
         	res.render('released', {
 		        data: {
