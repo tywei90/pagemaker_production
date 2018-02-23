@@ -41,3 +41,5 @@ npm run build //编译文件到build目录下，打包到磁盘里，对应4000�
 2、我们的html模板采用[pug](https://pugjs.org/api/getting-started.html)，首页的模板在views文件夹下的genpages.pug文件。`/public/main.js`为线上的js地址，如果是本地调试pc页面，改成`http://127.0.0.1:8080/public/main.js`，css文件一样。如果是调试手机页面或者其他电脑上，改成`http://your_ip_address:4000/public/main.js`。当然，需要先打包修改的代码。
 
 3、genpages.pug里有一些配置可以选，`debugJS`参数是开启在移动端调试js的工具。`debugCSS_IP`参数是开启在移动端调试css的工具，需要传入电脑的ip地址，不传不开启。`showProgressBar`参数是否显示loading进度条。
+
+4、平台密码初始值是：pagemaker。如需更改，在data文件夹下修改password.json文件内容的value值。我们采用的是[bcrypt](https://github.com/kelektiv/node.bcrypt.js)编码。大家可以去[BCrypt Calculator](https://www.dailycred.com/article/bcrypt-calculator)网站，方便计算出编码值。后台密码一样，在data文件夹下的server_code.json文件。

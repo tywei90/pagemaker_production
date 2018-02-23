@@ -496,7 +496,7 @@ class Preview extends React.Component {
 							'</body></html>';
 		return (
 			<section className="m-preview">
-				<span id="release" onClick={this.showReleaseModal.bind(this)}><i className="iconfont icon-fabu"></i>发布</span>
+				<span id="release" onClick={this.showReleaseModal.bind(this)}><i className="iconfont icon-fabu1"></i>发布</span>
 				<a href="/released" className="see-released"><i className="iconfont icon-chakan"></i>查看</a>
 				<em className="clearDirectory" onClick={this.showClearModal.bind(this)}>清理</em>
 				<Frame  className="iframe" 
