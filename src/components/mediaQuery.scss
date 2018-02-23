@@ -41,6 +41,9 @@
             box-sizing: border-box;
             padding: 15px 10px;
             min-height: calc(100vh - 80px);
+            .upload{
+                right: -3px;
+            }
             .m-units-list {
                 position: fixed;
                 width: 200px;
