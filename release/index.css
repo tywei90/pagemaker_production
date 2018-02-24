@@ -241,6 +241,10 @@ ul {
     background-color: transparent;
 }
 
+#framePage .article-content{
+    word-break: break-all;
+}
+
 #framePage .article-content b {
     color: #d91d37;
 }
