@@ -51,6 +51,7 @@ class PreTextBody extends React.Component {
 			borderRadius = '0'
 		}	
 		style = {
+			wordBreak: 'break-all',
 			color: jsdata.textColor,
 			backgroundColor: jsdata.bgColor,
 			textAlign: jsdata.textAlign,
