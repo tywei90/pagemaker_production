@@ -8,9 +8,10 @@
 
     textarea {
         width: calc(72vw - 530px);
-        max-width: 763px;
+        max-width: calc(72vw - 530px);
         height: 70px;
         max-height: 200px;
+        word-break: break-all;
         box-sizing: border-box;
         padding: 8px;
         border-top-left-radius:5px;
